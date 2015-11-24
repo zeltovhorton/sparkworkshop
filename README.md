@@ -17,6 +17,7 @@ http://hortonworks.com/hadoop-tutorial/hands-on-tour-of-apache-spark-in-5-minute
 
 #### **SPARKR - CLI** 
 
+https://github.com/zeltovhorton/sparkworkshop/tree/master/r
 
 ## ZEPPELIN 
 
