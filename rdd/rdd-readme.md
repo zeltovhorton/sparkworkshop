@@ -281,7 +281,7 @@ Let's plot murders by month. DataFrames are useful for this one.
 
 
 
-cleanedRDD.map(_.dateString).take(30)
+    cleanedRDD.map(_.dateString).take(30)
 
 
 
@@ -295,11 +295,10 @@ cleanedRDD.map(_.dateString).take(30)
 
 
 
-import java.text.SimpleDateFormat
-
-val dateFmt = new SimpleDateFormat("yyyy-MM-dd")
-val timeFmt = new SimpleDateFormat("HH:mm:ss.S")
-
+    import java.text.SimpleDateFormat
+    
+    val dateFmt = new SimpleDateFormat("yyyy-MM-dd")
+    val timeFmt = new SimpleDateFormat("HH:mm:ss.S")
 
 
 
@@ -307,86 +306,87 @@ val timeFmt = new SimpleDateFormat("HH:mm:ss.S")
 
 
 
-import org.apache.spark.sql.types._
-import org.apache.spark.sql._
-import sqlContext.implicits._
-import java.sql.Timestamp
-
-case class CrimeData2(date:      Option[Timestamp],
-                      time:      Option[Timestamp],
-                      offense:   String,
-                      latitude:  Option[BigDecimal],
-                      longitude: Option[BigDecimal])
-def parseLatLong(s: String) = {
-  try {
-    Some(BigDecimal(s))
-  }
-  catch {
-    case _: Exception => None
-  }
-}
-
-def parseDateTime(fmt: SimpleDateFormat, s: String) = {
-  try {
-    Some(new Timestamp(fmt.parse(s).getTime))
-  }
-  catch {
-    case _: Exception => None
-  }
-}
-
-val df = noHeaderRDD.map { line =>
-  val cols = line.split(",")
-  val timeString = cols(11)
-  val dateString = cols(10)
-  CrimeData2(parseDateTime(dateFmt, dateString),
-             parseDateTime(timeFmt, timeString),
-             cols(6), 
-             parseLatLong(cols(7)),
-             parseLatLong(cols(8)))
-}.
-map { data =>
-  data.copy(offense = data.offense.replaceAll("\"", "").trim())
-}.
-filter { data =>
-  BadOffenseRE.findFirstIn(data.offense).isEmpty
-}.
-toDF
-
-
-
-
-df.printSchema()
-
-
-
-import org.apache.spark.sql.functions._
-display( 
-  df.filter(lower($"offense") like "%homicide%")
-    .select(month($"date").as("month"), $"offense")
-    .groupBy($"month").count()
-)
-
+    import org.apache.spark.sql.types._
+    import org.apache.spark.sql._
+    import sqlContext.implicits._
+    import java.sql.Timestamp
+    
+    case class CrimeData2(date:      Option[Timestamp],
+                          time:      Option[Timestamp],
+                          offense:   String,
+                          latitude:  Option[BigDecimal],
+                          longitude: Option[BigDecimal])
+    def parseLatLong(s: String) = {
+      try {
+        Some(BigDecimal(s))
+      }
+      catch {
+        case _: Exception => None
+      }
+    }
+    
+    def parseDateTime(fmt: SimpleDateFormat, s: String) = {
+      try {
+        Some(new Timestamp(fmt.parse(s).getTime))
+      }
+      catch {
+        case _: Exception => None
+      }
+    }
+    
+    val df = noHeaderRDD.map { line =>
+      val cols = line.split(",")
+      val timeString = cols(11)
+      val dateString = cols(10)
+      CrimeData2(parseDateTime(dateFmt, dateString),
+                 parseDateTime(timeFmt, timeString),
+                 cols(6), 
+                 parseLatLong(cols(7)),
+                 parseLatLong(cols(8)))
+    }.
+    map { data =>
+      data.copy(offense = data.offense.replaceAll("\"", "").trim())
+    }.
+    filter { data =>
+      BadOffenseRE.findFirstIn(data.offense).isEmpty
+    }.
+    toDF
+    
+    
+    
+    
+    df.printSchema()
+    
+    
+    
+    import org.apache.spark.sql.functions._
+    display( 
+      df.filter(lower($"offense") like "%homicide%")
+        .select(month($"date").as("month"), $"offense")
+        .groupBy($"month").count()
+    )
 
 
  What about all crimes per month?
 
 
 
-display( df.select(month($"date").as("month")).groupBy("month").count() )
-
+    display( df.select(month($"date").as("month")).groupBy("month").count() )
 
 
  We can also plot the frequency of crimes by hour of day.
 
 
 
-display(df.select(hour($"time").as("hour"), $"offense").groupBy($"hour").count())
+    display(df.select(hour($"time").as("hour"), $"offense").groupBy($"hour").count())
 
 
 
 
 > Written with [StackEdit](https://stackedit.io/).
+
+
+
 
 
 
