@@ -1,8 +1,10 @@
 
 
+## Spark Sql Federated Query ##
 
 
-**Spark SQL comes with a nice feature called: "JDBC to other Databases", but, it practice, it's JDBC federation feature.**
+
+####**Spark SQL comes with a nice feature called: "JDBC to other Databases", but, it practice, it's JDBC federation feature.**
 
 Example below using sandbox 2.3.2 and spark 1.5.1 TP (https://hortonworks.com/hadoop-tutorial/apache-spark-1-5-1-technical-preview-with-hdp-2-3/):
 
@@ -28,5 +30,26 @@ Example below using sandbox 2.3.2 and spark 1.5.1 TP (https://hortonworks.com/ha
     select * from mysql_federated_sample;
     select count(1) from mysql_federated_sample;
 
+####**Code below using spark-shell, scala code and data frames.**
+
+1- Open spark-shell with mysql jdbc driver
+
+    /root/dev/spark-1.5.1-bin-hadoop2.6/bin/spark-shell  --jars "/usr/share/java/mysql-connector-java.jar"
+
+2- Create a data frame pointing to mysql table
+
+    val jdbcDF = sqlContext.read.format("jdbc").options( 
+      Map(
+      "driver" -> "com.mysql.jdbc.Driver",
+      "url" -> "jdbc:mysql://localhost/hive?user=hive&password=hive",
+      "dbtable" -> "TBLS"
+      )
+    ).load()
+      
+    jdbcDF.show
+
+
 
 > Written with [StackEdit](https://stackedit.io/).
+
+
