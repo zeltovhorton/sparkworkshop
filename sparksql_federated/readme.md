@@ -1,5 +1,4 @@
 ---
-layout: post
 title: Spark Sql Federated Query
 ---
 ####**Spark SQL comes with a nice feature called: "JDBC to other Databases", but, it practice, it's JDBC federation feature.**
