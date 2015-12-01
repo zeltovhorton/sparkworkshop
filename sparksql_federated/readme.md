@@ -43,7 +43,6 @@ Example below using sandbox 2.3.2 and spark 1.5.1 TP (https://hortonworks.com/ha
       
     jdbcDF.show
 
---NO_CROSS_POST
 
 > Written with [StackEdit](https://stackedit.io/).
 
