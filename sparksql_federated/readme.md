@@ -1,6 +1,4 @@
----
-title: Spark Sql Federated Query
----
+
 ####**Spark SQL comes with a nice feature called: "JDBC to other Databases", but, it practice, it's JDBC federation feature.**
 
 Example below using sandbox 2.3.2 and spark 1.5.1 TP (https://hortonworks.com/hadoop-tutorial/apache-spark-1-5-1-technical-preview-with-hdp-2-3/):
