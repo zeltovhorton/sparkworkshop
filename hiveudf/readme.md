@@ -9,6 +9,9 @@ Pre-requisites, get custom jar:
     
     /home/zeppelin/prerequisites/apache-maven-3.3.3/bin/mvn org.apache.maven.plugins:maven-install-plugin:2.5.2:install-file  -Dfile=/home/zeppelin/dev/HiveUtils-1.0-SNAPSHOT-jar-with-dependencies.jar  -DgroupId=com.github.gbraccialli  -DartifactId=HiveUtils  -Dversion=1.0-SNAPSHOT  -Dpackaging=jar
 
+**Zeppelin Notebook:**
+
+http://sandbox.hortonworks.com:8081/#/notebook/2B2P8RE82
 
 In zeppelin:
 
