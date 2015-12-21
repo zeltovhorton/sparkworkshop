@@ -1,0 +1,536 @@
+{
+  "paragraphs": [
+    {
+      "text": "%sh\n\nwget https://raw.githubusercontent.com/zeltovhorton/sparkworkshop/master/data/philadelphia-crime-data-2015-ytd.csv\nls\npwd\nhadoop fs -mkdir /user/zeppelin/crime\nhadoop fs -put philadelphia-crime-data-2015-ytd.csv /user/zeppelin/crime/\nhadoop fs -ls /user/zeppelin\nhadoop fs -ls /user/zeppelin/crime",
+      "dateUpdated": "Dec 2, 2015 9:27:39 PM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "enabled": true,
+        "editorMode": "ace/mode/sh"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1449091241258_-1499401105",
+      "id": "20151202-212041_1323924764",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TEXT",
+        "msg": "--2015-12-02 21:26:53--  https://raw.githubusercontent.com/zeltovhorton/sparkworkshop/master/data/philadelphia-crime-data-2015-ytd.csv\nResolving raw.githubusercontent.com... 199.27.76.133\nConnecting to raw.githubusercontent.com|199.27.76.133|:443... connected.\nHTTP request sent, awaiting response... 200 OK\nLength: 7469462 (7.1M) [text/plain]\nSaving to: “philadelphia-crime-data-2015-ytd.csv.2”\n\n     0K .......... .......... .......... .......... ..........  0%  848K 9s\n    50K .......... .......... .......... .......... ..........  1% 2.52M 6s\n   100K .......... .......... .......... .......... ..........  2% 1.35M 5s\n   150K .......... .......... .......... .......... ..........  2% 3.63M 5s\n   200K .......... .......... .......... .......... ..........  3% 1.75M 4s\n   250K .......... .......... .......... .......... ..........  4% 3.23M 4s\n   300K .......... .......... .......... .......... ..........  4% 2.49M 4s\n   350K .......... .......... .......... .......... ..........  5% 1.79M 4s\n   400K .......... .......... .......... .......... ..........  6% 3.12M 4s\n   450K .......... .......... .......... .......... ..........  6% 2.59M 3s\n   500K .......... .......... .......... .......... ..........  7% 4.44M 3s\n   550K .......... .......... .......... .......... ..........  8% 3.92M 3s\n   600K .......... .......... .......... .......... ..........  8% 2.79M 3s\n   650K .......... .......... .......... .......... ..........  9% 2.61M 3s\n   700K .......... .......... .......... .......... .......... 10% 3.94M 3s\n   750K .......... .......... .......... .......... .......... 10% 3.03M 3s\n   800K .......... .......... .......... .......... .......... 11%  380K 4s\n   850K .......... .......... .......... .......... .......... 12% 4.59M 3s\n   900K .......... .......... .......... .......... .......... 13% 2.72M 3s\n   950K .......... .......... .......... .......... .......... 13% 2.91M 3s\n  1000K .......... .......... .......... .......... .......... 14% 1.84M 3s\n  1050K .......... .......... .......... .......... .......... 15% 2.04M 3s\n  1100K .......... .......... .......... .......... .......... 15% 3.38M 3s\n  1150K .......... .......... .......... .......... .......... 16% 1.96M 3s\n  1200K .......... .......... .......... .......... .......... 17% 2.33M 3s\n  1250K .......... .......... .......... .......... .......... 17% 1.84M 3s\n  1300K .......... .......... .......... .......... .......... 18% 2.63M 3s\n  1350K .......... .......... .......... .......... .......... 19% 3.05M 3s\n  1400K .......... .......... .......... .......... .......... 19% 2.47M 3s\n  1450K .......... .......... .......... .......... .......... 20%  571K 3s\n  1500K .......... .......... .......... .......... .......... 21% 2.88M 3s\n  1550K .......... .......... .......... .......... .......... 21% 3.13M 3s\n  1600K .......... .......... .......... .......... .......... 22% 1.58M 3s\n  1650K .......... .......... .......... .......... .......... 23% 3.01M 3s\n  1700K .......... .......... .......... .......... .......... 23% 2.87M 3s\n  1750K .......... .......... .......... .......... .......... 24%  763K 3s\n  1800K .......... .......... .......... .......... .......... 25% 3.79M 3s\n  1850K .......... .......... .......... .......... .......... 26% 3.34M 3s\n  1900K .......... .......... .......... .......... .......... 26% 2.23M 3s\n  1950K .......... .......... .......... .......... .......... 27% 2.56M 3s\n  2000K .......... .......... .......... .......... .......... 28% 2.20M 3s\n  2050K .......... .......... .......... .......... .......... 28% 1.55M 3s\n  2100K .......... .......... .......... .......... .......... 29% 5.26M 3s\n  2150K .......... .......... .......... .......... .......... 30% 2.21M 3s\n  2200K .......... .......... .......... .......... .......... 30% 3.72M 3s\n  2250K .......... .......... .......... .......... .......... 31% 4.00M 2s\n  2300K .......... .......... .......... .......... .......... 32%  682K 3s\n  2350K .......... .......... .......... .......... .......... 32% 2.59M 3s\n  2400K .......... .......... .......... .......... .......... 33% 2.06M 2s\n  2450K .......... .......... .......... .......... .......... 34% 4.93M 2s\n  2500K .......... .......... .......... .......... .......... 34% 4.53M 2s\n  2550K .......... .......... .......... .......... .......... 35%  588K 2s\n  2600K .......... .......... .......... .......... .......... 36% 3.06M 2s\n  2650K .......... .......... .......... .......... .......... 37% 2.66M 2s\n  2700K .......... .......... .......... .......... .......... 37% 3.49M 2s\n  2750K .......... .......... .......... .......... .......... 38% 2.15M 2s\n  2800K .......... .......... .......... .......... .......... 39% 2.22M 2s\n  2850K .......... .......... .......... .......... .......... 39% 2.24M 2s\n  2900K .......... .......... .......... .......... .......... 40% 2.99M 2s\n  2950K .......... .......... .......... .......... .......... 41% 2.56M 2s\n  3000K .......... .......... .......... .......... .......... 41% 2.33M 2s\n  3050K .......... .......... .......... .......... .......... 42% 3.31M 2s\n  3100K .......... .......... .......... .......... .......... 43% 3.57M 2s\n  3150K .......... .......... .......... .......... .......... 43% 2.23M 2s\n  3200K .......... .......... .......... .......... .......... 44% 1.77M 2s\n  3250K .......... .......... .......... .......... .......... 45% 4.86M 2s\n  3300K .......... .......... .......... .......... .......... 45% 3.16M 2s\n  3350K .......... .......... .......... .......... .......... 46% 1.51M 2s\n  3400K .......... .......... .......... .......... .......... 47% 2.30M 2s\n  3450K .......... .......... .......... .......... .......... 47% 6.85M 2s\n  3500K .......... .......... .......... .......... .......... 48% 3.90M 2s\n  3550K .......... .......... .......... .......... .......... 49% 1.35M 2s\n  3600K .......... .......... .......... .......... .......... 50% 2.26M 2s\n  3650K .......... .......... .......... .......... .......... 50% 2.98M 2s\n  3700K .......... .......... .......... .......... .......... 51% 2.93M 2s\n  3750K .......... .......... .......... .......... .......... 52% 2.50M 2s\n  3800K .......... .......... .......... .......... .......... 52% 2.16M 2s\n  3850K .......... .......... .......... .......... .......... 53% 3.27M 2s\n  3900K .......... .......... .......... .......... .......... 54% 1.51M 2s\n  3950K .......... .......... .......... .......... .......... 54% 4.57M 2s\n  4000K .......... .......... .......... .......... .......... 55% 3.34M 2s\n  4050K .......... .......... .......... .......... .......... 56% 3.19M 2s\n  4100K .......... .......... .......... .......... .......... 56%  424K 2s\n  4150K .......... .......... .......... .......... .......... 57%  108M 2s\n  4200K .......... .......... .......... .......... .......... 58% 84.4M 1s\n  4250K .......... .......... .......... .......... .......... 58%  117M 1s\n  4300K .......... .......... .......... .......... .......... 59% 70.0M 1s\n  4350K .......... .......... .......... .......... .......... 60% 90.5M 1s\n  4400K .......... .......... .......... .......... .......... 61% 44.6M 1s\n  4450K .......... .......... .......... .......... .......... 61% 3.05M 1s\n  4500K .......... .......... .......... .......... .......... 62%  949K 1s\n  4550K .......... .......... .......... .......... .......... 63% 14.9M 1s\n  4600K .......... .......... .......... .......... .......... 63% 1.29M 1s\n  4650K .......... .......... .......... .......... .......... 64% 1.59M 1s\n  4700K .......... .......... .......... .......... .......... 65%  128K 1s\n  4750K .......... .......... .......... .......... .......... 65% 2.92M 1s\n  4800K .......... .......... .......... .......... .......... 66% 1.89M 1s\n  4850K .......... .......... .......... .......... .......... 67% 3.30M 1s\n  4900K .......... .......... .......... .......... .......... 67% 3.15M 1s\n  4950K .......... .......... .......... .......... .......... 68% 2.77M 1s\n  5000K .......... .......... .......... .......... .......... 69% 1.67M 1s\n  5050K .......... .......... .......... .......... .......... 69%  288K 1s\n  5100K .......... .......... .......... .......... .......... 70% 3.12M 1s\n  5150K .......... .......... .......... .......... .......... 71% 2.19M 1s\n  5200K .......... .......... .......... .......... .......... 71% 1.77M 1s\n  5250K .......... .......... .......... .......... .......... 72% 2.54M 1s\n  5300K .......... .......... .......... .......... .......... 73%  142K 1s\n  5350K .......... .......... .......... .......... .......... 74% 48.2M 1s\n  5400K .......... .......... .......... .......... .......... 74% 25.8M 1s\n  5450K .......... .......... .......... .......... .......... 75% 95.6M 1s\n  5500K .......... .......... .......... .......... .......... 76% 96.4M 1s\n  5550K .......... .......... .......... .......... .......... 76%  108M 1s\n  5600K .......... .......... .......... .......... .......... 77% 64.4M 1s\n  5650K .......... .......... .......... .......... .......... 78% 88.6M 1s\n  5700K .......... .......... .......... .......... .......... 78% 93.0M 1s\n  5750K .......... .......... .......... .......... .......... 79% 2.44M 1s\n  5800K .......... .......... .......... .......... .......... 80%  252K 1s\n  5850K .......... .......... .......... .......... .......... 80%  476K 1s\n  5900K .......... .......... .......... .......... .......... 81%  670K 1s\n  5950K .......... .......... .......... .......... .......... 82%  362K 1s\n  6000K .......... .......... .......... .......... .......... 82% 4.02M 1s\n  6050K .......... .......... .......... .......... .......... 83%  955K 1s\n  6100K .......... .......... .......... .......... .......... 84% 1.95M 1s\n  6150K .......... .......... .......... .......... .......... 84% 3.33M 1s\n  6200K .......... .......... .......... .......... .......... 85% 2.46M 1s\n  6250K .......... .......... .......... .......... .......... 86% 2.72M 1s\n  6300K .......... .......... .......... .......... .......... 87% 4.14M 1s\n  6350K .......... .......... .......... .......... .......... 87% 5.68M 1s\n  6400K .......... .......... .......... .......... .......... 88% 1.37M 1s\n  6450K .......... .......... .......... .......... .......... 89% 3.42M 0s\n  6500K .......... .......... .......... .......... .......... 89% 2.14M 0s\n  6550K .......... .......... .......... .......... .......... 90% 1.91M 0s\n  6600K .......... .......... .......... .......... .......... 91% 1.93M 0s\n  6650K .......... .......... .......... .......... .......... 91% 3.00M 0s\n  6700K .......... .......... .......... .......... .......... 92% 1.78M 0s\n  6750K .......... .......... .......... .......... .......... 93% 1.53M 0s\n  6800K .......... .......... .......... .......... .......... 93% 2.27M 0s\n  6850K .......... .......... .......... .......... .......... 94% 2.13M 0s\n  6900K .......... .......... .......... .......... .......... 95% 1.98M 0s\n  6950K .......... .......... .......... .......... .......... 95% 2.14M 0s\n  7000K .......... .......... .......... .......... .......... 96% 2.57M 0s\n  7050K .......... .......... .......... .......... .......... 97% 1.49M 0s\n  7100K .......... .......... .......... .......... .......... 98%  164K 0s\n  7150K .......... .......... .......... .......... .......... 98% 2.00M 0s\n  7200K .......... .......... .......... .......... .......... 99%  206K 0s\n  7250K .......... .......... .......... .......... ....      100%  808K\u003d5.0s\n\n2015-12-02 21:26:59 (1.43 MB/s) - “philadelphia-crime-data-2015-ytd.csv.2” saved [7469462/7469462]\n\nincubator-zeppelin\nphiladelphia-crime-data-2015-ytd.csv\nphiladelphia-crime-data-2015-ytd.csv.1\nphiladelphia-crime-data-2015-ytd.csv.2\nsparkworkshop\n/home/zeppelin/dev\nmkdir: `/user/zeppelin/crime\u0027: File exists\nput: `/home/zeppelin/philadelphia-crime-data-2015-ytd.csv\u0027: No such file or directory\nFound 8 items\ndrwxr-xr-x   - zeppelin zeppelin          0 2015-10-13 20:57 /user/zeppelin/.hiveJars\ndrwxr-xr-x   - zeppelin zeppelin          0 2015-12-02 19:34 /user/zeppelin/.sparkStaging\n-rw-r--r--   1 zeppelin zeppelin    4610348 2015-08-25 14:33 /user/zeppelin/bank-full.csv\ndrwxr-xr-x   - zeppelin zeppelin          0 2015-12-02 21:23 /user/zeppelin/crime\ndrwxr-xr-x   - zeppelin zeppelin          0 2015-12-02 19:29 /user/zeppelin/movielens\ndrwxr-xr-x   - zeppelin zeppelin          0 2015-12-02 19:27 /user/zeppelin/movielens_\n-rw-r--r--   1 zeppelin zeppelin         73 2015-10-13 20:47 /user/zeppelin/people.json\n-rw-r--r--   1 zeppelin zeppelin         32 2015-10-13 20:47 /user/zeppelin/people.txt\n"
+      },
+      "dateCreated": "Dec 2, 2015 9:20:41 PM",
+      "dateStarted": "Dec 2, 2015 9:26:53 PM",
+      "dateFinished": "Dec 2, 2015 9:27:06 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "val baseRDD \u003d sc.textFile(\"crime/philadelphia-crime-data-2015-ytd.csv\")",
+      "dateUpdated": "Dec 21, 2015 4:48:14 PM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "editorMode": "ace/mode/scala",
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1448327548034_697305844",
+      "id": "20151124-011228_1747769399",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TEXT",
+        "msg": "baseRDD: org.apache.spark.rdd.RDD[String] \u003d MapPartitionsRDD[1] at textFile at \u003cconsole\u003e:23\n"
+      },
+      "dateCreated": "Nov 24, 2015 1:12:28 AM",
+      "dateStarted": "Dec 21, 2015 4:48:14 PM",
+      "dateFinished": "Dec 21, 2015 4:48:30 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "baseRDD.take(10).foreach(println)",
+      "dateUpdated": "Dec 21, 2015 4:48:47 PM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1448327584355_1551310484",
+      "id": "20151124-011304_727475792",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TEXT",
+        "msg": "SECTOR,DC_DIST,DC_KEY,LOCATION_BLOCK,UCR_GENERAL,OBJECTID,TEXT_GENERAL_CODE,POINT_X,POINT_Y,SHAPE,DISPATCH_DATE,DISPATCH_TIME\n1,1,201501000030,1500 BLOCK SHUNK ST,400,129338817,Aggravated Assault No Firearm,-75.17376025,39.91845624,129239946,2015-01-01,02:28:00.0\n1,1,201501000060,2800 BLOCK CANTRELL ST,400,129332317,Aggravated Assault Firearm,-75.19323947,39.92688103,129233446,2015-01-01,15:55:00.0\n1,1,201501000081,2800 BLOCK CANTRELL ST,300,129330354,Robbery Firearm,-75.19356481,39.92692647,129231483,2015-01-01,23:46:00.0\n2,1,201501000155,1800 BLOCK W MOYAMENSING AVE,600,129372455,Theft from Vehicle,-75.17877691,39.9142244,129273584,2015-01-02,10:52:00.0\n1,1,201501000173,2000 BLOCK POINT BREEZE AVE,600,129345460,Theft from Vehicle,-75.18862964,39.92739659,129246589,2015-01-02,14:26:00.0\n1,1,201501000282,2000 BLOCK OREGON AV,600,129365351,Thefts,-75.18147584,39.91823982,129266480,2015-01-03,12:43:00.0\n1,1,201501000284,2000 BLOCK S 22ND ST,600,129352165,Thefts,-75.18249755,39.92695112,129253294,2015-01-03,13:08:00.0\n1,1,201501000297,S 18TH ST / W PASSYUNK AV,600,129372464,Theft from Vehicle,-75.17629853,39.92425967,129273593,2015-01-03,16:43:00.0\n2,1,201501000356,2300 BLOCK OREGON AVE,600,129352170,Thefts,-75.18673096,39.91878087,129253299,2015-01-04,08:48:00.0\n"
+      },
+      "dateCreated": "Nov 24, 2015 1:13:04 AM",
+      "dateStarted": "Dec 21, 2015 4:48:47 PM",
+      "dateFinished": "Dec 21, 2015 4:48:48 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "val noHeaderRDD \u003d baseRDD.filter { line \u003d\u003e ! (line contains \"DC_DIST\") }",
+      "dateUpdated": "Dec 21, 2015 4:48:53 PM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1448327592659_-1532836699",
+      "id": "20151124-011312_1212546767",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TEXT",
+        "msg": "noHeaderRDD: org.apache.spark.rdd.RDD[String] \u003d MapPartitionsRDD[2] at filter at \u003cconsole\u003e:25\n"
+      },
+      "dateCreated": "Nov 24, 2015 1:13:12 AM",
+      "dateStarted": "Dec 21, 2015 4:48:53 PM",
+      "dateFinished": "Dec 21, 2015 4:48:54 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "noHeaderRDD.take(10).foreach(println)",
+      "dateUpdated": "Dec 21, 2015 4:48:56 PM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1448327620131_238608534",
+      "id": "20151124-011340_425443492",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TEXT",
+        "msg": "1,1,201501000030,1500 BLOCK SHUNK ST,400,129338817,Aggravated Assault No Firearm,-75.17376025,39.91845624,129239946,2015-01-01,02:28:00.0\n1,1,201501000060,2800 BLOCK CANTRELL ST,400,129332317,Aggravated Assault Firearm,-75.19323947,39.92688103,129233446,2015-01-01,15:55:00.0\n1,1,201501000081,2800 BLOCK CANTRELL ST,300,129330354,Robbery Firearm,-75.19356481,39.92692647,129231483,2015-01-01,23:46:00.0\n2,1,201501000155,1800 BLOCK W MOYAMENSING AVE,600,129372455,Theft from Vehicle,-75.17877691,39.9142244,129273584,2015-01-02,10:52:00.0\n1,1,201501000173,2000 BLOCK POINT BREEZE AVE,600,129345460,Theft from Vehicle,-75.18862964,39.92739659,129246589,2015-01-02,14:26:00.0\n1,1,201501000282,2000 BLOCK OREGON AV,600,129365351,Thefts,-75.18147584,39.91823982,129266480,2015-01-03,12:43:00.0\n1,1,201501000284,2000 BLOCK S 22ND ST,600,129352165,Thefts,-75.18249755,39.92695112,129253294,2015-01-03,13:08:00.0\n1,1,201501000297,S 18TH ST / W PASSYUNK AV,600,129372464,Theft from Vehicle,-75.17629853,39.92425967,129273593,2015-01-03,16:43:00.0\n2,1,201501000356,2300 BLOCK OREGON AVE,600,129352170,Thefts,-75.18673096,39.91878087,129253299,2015-01-04,08:48:00.0\n1,1,201501000368,1400 BLOCK SHUNK ST,600,129352171,Thefts,-75.17176403,39.91828871,129253300,2015-01-04,10:10:00.0\n"
+      },
+      "dateCreated": "Nov 24, 2015 1:13:40 AM",
+      "dateStarted": "Dec 21, 2015 4:48:56 PM",
+      "dateFinished": "Dec 21, 2015 4:48:56 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "case class CrimeData(dateString: String,\n                     timeString: String,\n                     offense: String,\n                     latitude: String,\n                     longitude: String)\nval dataRDD \u003d noHeaderRDD.map { line \u003d\u003e\n  val cols \u003d line.split(\",\")\n  CrimeData(dateString \u003d cols(10), //DISPATCH_DATE\n            timeString \u003d cols(11), //DISPATCH_TIME\n            offense    \u003d cols(6),  //TEXT_GENERAL_CODE\n            latitude   \u003d cols(7),  //POINT_X\n            longitude  \u003d cols(8))  //POINT_Y\n}\ndataRDD.take(10).foreach(println)",
+      "dateUpdated": "Dec 21, 2015 4:50:44 PM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1448327637568_-600898242",
+      "id": "20151124-011357_1589242951",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TEXT",
+        "msg": "defined class CrimeData\ndataRDD: org.apache.spark.rdd.RDD[CrimeData] \u003d MapPartitionsRDD[3] at map at \u003cconsole\u003e:29\nCrimeData(2015-01-01,02:28:00.0,Aggravated Assault No Firearm,-75.17376025,39.91845624)\nCrimeData(2015-01-01,15:55:00.0,Aggravated Assault Firearm,-75.19323947,39.92688103)\nCrimeData(2015-01-01,23:46:00.0,Robbery Firearm,-75.19356481,39.92692647)\nCrimeData(2015-01-02,10:52:00.0,Theft from Vehicle,-75.17877691,39.9142244)\nCrimeData(2015-01-02,14:26:00.0,Theft from Vehicle,-75.18862964,39.92739659)\nCrimeData(2015-01-03,12:43:00.0,Thefts,-75.18147584,39.91823982)\nCrimeData(2015-01-03,13:08:00.0,Thefts,-75.18249755,39.92695112)\nCrimeData(2015-01-03,16:43:00.0,Theft from Vehicle,-75.17629853,39.92425967)\nCrimeData(2015-01-04,08:48:00.0,Thefts,-75.18673096,39.91878087)\nCrimeData(2015-01-04,10:10:00.0,Thefts,-75.17176403,39.91828871)\n"
+      },
+      "dateCreated": "Nov 24, 2015 1:13:57 AM",
+      "dateStarted": "Dec 21, 2015 4:50:44 PM",
+      "dateFinished": "Dec 21, 2015 4:50:46 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "val groupedByOffenseRDD \u003d dataRDD.groupBy { data \u003d\u003e data.offense }",
+      "dateUpdated": "Dec 21, 2015 4:50:49 PM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1448327661228_593609175",
+      "id": "20151124-011421_1321714245",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TEXT",
+        "msg": "groupedByOffenseRDD: org.apache.spark.rdd.RDD[(String, Iterable[CrimeData])] \u003d ShuffledRDD[5] at groupBy at \u003cconsole\u003e:31\n"
+      },
+      "dateCreated": "Nov 24, 2015 1:14:21 AM",
+      "dateStarted": "Dec 21, 2015 4:50:49 PM",
+      "dateFinished": "Dec 21, 2015 4:50:49 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "groupedByOffenseRDD.take(10)",
+      "dateUpdated": "Dec 21, 2015 4:50:51 PM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "editorMode": "ace/mode/scala",
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1448327745041_-1208631294",
+      "id": "20151124-011545_983262568",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TEXT",
+        "msg": "res9: Array[(String, Iterable[CrimeData])] \u003d Array((129338613,CompactBuffer(CrimeData(129239742,2015-10-19,129338613,Burglary Residential,-75.14163991))), (Homicide - Criminal,CompactBuffer(CrimeData(2015-01-22,16:23:00.0,Homicide - Criminal,-75.17201991,39.92080028), CrimeData(2015-04-23,22:37:00.0,Homicide - Criminal,-75.11115429,40.03559879), CrimeData(2015-05-10,21:25:00.0,Homicide - Criminal,-75.10029655,40.04462812), CrimeData(2015-07-25,12:56:00.0,Homicide - Criminal,-75.11043088,40.03798755), CrimeData(2015-09-20,18:18:00.0,Homicide - Criminal,-75.09301386,40.03083922), CrimeData(2015-09-26,05:09:00.0,Homicide - Criminal,-75.10421483,40.03070386), CrimeData(2015-09-04,20:13:00.0,Homicide - Criminal,-75.14918243,39.94162942), CrimeData(2015-10-14,21:33:00.0,Homicide - Criminal,-7..."
+      },
+      "dateCreated": "Nov 24, 2015 1:15:45 AM",
+      "dateStarted": "Dec 21, 2015 4:50:51 PM",
+      "dateFinished": "Dec 21, 2015 4:50:53 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "val offenseCounts \u003d dataRDD.map(item \u003d\u003e (item.offense, 1)).countByKey()\nfor ((offense, count) \u003c- offenseCounts) {\n  println(f\"$offense%30s $count%5d\")\n}",
+      "dateUpdated": "Dec 2, 2015 9:28:54 PM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1448327995928_-1105738584",
+      "id": "20151124-011955_1787857896",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TEXT",
+        "msg": "offenseCounts: scala.collection.Map[String,Long] \u003d Map(129342978 -\u003e 1, Rape -\u003e 1061, Burglary Residential -\u003e 5585, Motor Vehicle Theft -\u003e 1916, Burglary Non-Residential -\u003e 1251, Theft from Vehicle -\u003e 10608, 129338613 -\u003e 1, Thefts -\u003e 19619, Recovered Stolen Motor Vehicle -\u003e 5731, \"Homicide - Criminal \" -\u003e 40, Aggravated Assault Firearm -\u003e 1940, Robbery No Firearm -\u003e 3220, Robbery Firearm -\u003e 2384, Homicide - Criminal -\u003e 183, Aggravated Assault No Firearm -\u003e 4634)\n                     129342978     1\n                          Rape  1061\n          Burglary Residential  5585\n           Motor Vehicle Theft  1916\n      Burglary Non-Residential  1251\n            Theft from Vehicle 10608\n                     129338613     1\n                        Thefts 19619\nRecovered Stolen Motor Vehicle  5731\n        \"Homicide - Criminal \"    40\n    Aggravated Assault Firearm  1940\n            Robbery No Firearm  3220\n               Robbery Firearm  2384\n           Homicide - Criminal   183\n Aggravated Assault No Firearm  4634\n"
+      },
+      "dateCreated": "Nov 24, 2015 1:19:55 AM",
+      "dateStarted": "Dec 2, 2015 9:28:54 PM",
+      "dateFinished": "Dec 2, 2015 9:28:55 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "val BadOffenseRE \u003d \"\"\"^\\d+$\"\"\".r\nval cleanedRDD \u003d dataRDD.map { data \u003d\u003e\n  data.copy(offense \u003d data.offense.replaceAll(\"\\\"\", \"\").trim())\n}.\nfilter { data \u003d\u003e\n  BadOffenseRE.findFirstIn(data.offense).isEmpty\n}",
+      "dateUpdated": "Dec 2, 2015 9:28:58 PM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1448328017415_-1936780884",
+      "id": "20151124-012017_800257841",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TEXT",
+        "msg": "BadOffenseRE: scala.util.matching.Regex \u003d ^\\d+$\ncleanedRDD: org.apache.spark.rdd.RDD[CrimeData] \u003d MapPartitionsRDD[12] at filter at \u003cconsole\u003e:36\n"
+      },
+      "dateCreated": "Nov 24, 2015 1:20:17 AM",
+      "dateStarted": "Dec 2, 2015 9:28:58 PM",
+      "dateFinished": "Dec 2, 2015 9:28:58 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "val groupedByOffenseRDD2 \u003d cleanedRDD.groupBy { data \u003d\u003e data.offense }\n\nval offenseCounts2 \u003d cleanedRDD.map(item \u003d\u003e (item.offense, 1)).countByKey()\nfor ((offense, count) \u003c- offenseCounts2) {\n  println(f\"$offense%30s $count%5d\")\n}",
+      "dateUpdated": "Dec 2, 2015 9:29:01 PM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1448328088526_-1477901329",
+      "id": "20151124-012128_5322023",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TEXT",
+        "msg": "groupedByOffenseRDD2: org.apache.spark.rdd.RDD[(String, Iterable[CrimeData])] \u003d ShuffledRDD[14] at groupBy at \u003cconsole\u003e:35\noffenseCounts2: scala.collection.Map[String,Long] \u003d Map(Rape -\u003e 1061, Burglary Residential -\u003e 5585, Motor Vehicle Theft -\u003e 1916, Burglary Non-Residential -\u003e 1251, Theft from Vehicle -\u003e 10608, Thefts -\u003e 19619, Recovered Stolen Motor Vehicle -\u003e 5731, Aggravated Assault Firearm -\u003e 1940, Robbery No Firearm -\u003e 3220, Robbery Firearm -\u003e 2384, Homicide - Criminal -\u003e 223, Aggravated Assault No Firearm -\u003e 4634)\n                          Rape  1061\n          Burglary Residential  5585\n           Motor Vehicle Theft  1916\n      Burglary Non-Residential  1251\n            Theft from Vehicle 10608\n                        Thefts 19619\nRecovered Stolen Motor Vehicle  5731\n    Aggravated Assault Firearm  1940\n            Robbery No Firearm  3220\n               Robbery Firearm  2384\n           Homicide - Criminal   223\n Aggravated Assault No Firearm  4634\n"
+      },
+      "dateCreated": "Nov 24, 2015 1:21:28 AM",
+      "dateStarted": "Dec 2, 2015 9:29:01 PM",
+      "dateFinished": "Dec 2, 2015 9:29:02 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "println(baseRDD.partitions.length)\nprintln(groupedByOffenseRDD2.partitions.length)",
+      "dateUpdated": "Nov 24, 2015 1:31:14 AM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1448328330437_-1405246728",
+      "id": "20151124-012530_367122947",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TEXT",
+        "msg": "2\n2\n"
+      },
+      "dateCreated": "Nov 24, 2015 1:25:30 AM",
+      "dateStarted": "Nov 24, 2015 1:31:14 AM",
+      "dateFinished": "Nov 24, 2015 1:31:15 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "    cleanedRDD.cache()",
+      "dateUpdated": "Dec 2, 2015 9:29:12 PM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "editorMode": "ace/mode/scala",
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1448328674742_-1631187922",
+      "id": "20151124-013114_216576669",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TEXT",
+        "msg": "res19: cleanedRDD.type \u003d MapPartitionsRDD[12] at filter at \u003cconsole\u003e:36\n"
+      },
+      "dateCreated": "Nov 24, 2015 1:31:14 AM",
+      "dateStarted": "Dec 2, 2015 9:29:12 PM",
+      "dateFinished": "Dec 2, 2015 9:29:12 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "cleanedRDD.count()",
+      "dateUpdated": "Dec 2, 2015 9:29:27 PM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "editorMode": "ace/mode/scala",
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1448328729057_541397172",
+      "id": "20151124-013209_588661334",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TEXT",
+        "msg": "res21: Long \u003d 58172\n"
+      },
+      "dateCreated": "Nov 24, 2015 1:32:09 AM",
+      "dateStarted": "Dec 2, 2015 9:29:27 PM",
+      "dateFinished": "Dec 2, 2015 9:29:27 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "val resultRDD1 \u003d cleanedRDD.filter { _.offense.toLowerCase contains \"homicide\" }.map {item \u003d\u003e (item.offense, 1) }.reduceByKey(_ + _)\nfor ((method, count) \u003c- resultRDD1.collect())\n  println(f\"$method%10s $count%d\")",
+      "dateUpdated": "Dec 2, 2015 9:29:43 PM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1448328787322_-1595605488",
+      "id": "20151124-013307_1037154012",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TEXT",
+        "msg": "resultRDD1: org.apache.spark.rdd.RDD[(String, Int)] \u003d ShuffledRDD[20] at reduceByKey at \u003cconsole\u003e:35\nHomicide - Criminal 223\n"
+      },
+      "dateCreated": "Nov 24, 2015 1:33:07 AM",
+      "dateStarted": "Dec 2, 2015 9:29:43 PM",
+      "dateFinished": "Dec 2, 2015 9:29:44 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "config": {},
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1448328950345_-1603299943",
+      "id": "20151124-013550_405367202",
+      "dateCreated": "Nov 24, 2015 1:35:50 AM",
+      "status": "READY",
+      "progressUpdateIntervalMs": 500
+    }
+  ],
+  "name": "ZELTOV - Spark RDD - Philly Crime Data",
+  "id": "2B6HKTZDK",
+  "angularObjects": {
+    "2B8EK9Z9G": [],
+    "2B6HA4M1D": [],
+    "2B4PDXAJG": [],
+    "2B7QVJYH1": [],
+    "2B5GNF8UB": [],
+    "2B7XXY35M": [],
+    "2B4Y2MH42": [],
+    "2B4WPNTHB": [],
+    "2B7PXUSJK": [],
+    "2B84ZN7VY": [],
+    "2B73WYDUW": [],
+    "2B5EPZWKA": [],
+    "2B82EEZNC": []
+  },
+  "config": {
+    "looknfeel": "default"
+  },
+  "info": {}
+}

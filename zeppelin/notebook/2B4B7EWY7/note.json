@@ -1,0 +1,419 @@
+{
+  "paragraphs": [
+    {
+      "text": "%sh\nhdfs dfs -mkdir tmp\nhdfs dfs -put /usr/hdp/current/spark-client/examples/src/main/resources/people.* tmp",
+      "dateUpdated": "Dec 2, 2015 9:37:43 PM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "enabled": true,
+        "editorMode": "ace/mode/sh"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1449092206667_-2082529961",
+      "id": "20151202-213646_214919793",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TEXT",
+        "msg": ""
+      },
+      "dateCreated": "Dec 2, 2015 9:36:46 PM",
+      "dateStarted": "Dec 2, 2015 9:37:43 PM",
+      "dateFinished": "Dec 2, 2015 9:37:48 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%sh\nhdfs dfs -ls tmp",
+      "dateUpdated": "Dec 2, 2015 9:38:08 PM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "enabled": true,
+        "editorMode": "ace/mode/sh"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1449092271940_378247383",
+      "id": "20151202-213751_1153651630",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TEXT",
+        "msg": "Found 2 items\n-rw-r--r--   1 zeppelin zeppelin         73 2015-12-02 21:37 tmp/people.json\n-rw-r--r--   1 zeppelin zeppelin         32 2015-12-02 21:37 tmp/people.txt\n"
+      },
+      "dateCreated": "Dec 2, 2015 9:37:51 PM",
+      "dateStarted": "Dec 2, 2015 9:38:08 PM",
+      "dateFinished": "Dec 2, 2015 9:38:10 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%sh\nhadoop fs -cat tmp/people.json\necho \"---------------------------\"\nhadoop fs -cat tmp/people.txt\n",
+      "dateUpdated": "Dec 2, 2015 9:42:49 PM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "enabled": true,
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1449092525650_1364711270",
+      "id": "20151202-214205_479182447",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TEXT",
+        "msg": "{\"name\":\"Michael\"}\n{\"name\":\"Andy\", \"age\":30}\n{\"name\":\"Justin\", \"age\":19}\n---------------------------\nMichael, 29\nAndy, 30\nJustin, 19\n"
+      },
+      "dateCreated": "Dec 2, 2015 9:42:05 PM",
+      "dateStarted": "Dec 2, 2015 9:42:49 PM",
+      "dateFinished": "Dec 2, 2015 9:42:54 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "val df \u003d sqlContext.jsonFile(\"tmp/people.json\")",
+      "dateUpdated": "Dec 2, 2015 9:38:27 PM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "editorMode": "ace/mode/scala",
+        "editorHide": false,
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1448338450150_-2069242969",
+      "id": "20151124-041410_2046865991",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TEXT",
+        "msg": "warning: there were 1 deprecation warning(s); re-run with -deprecation for details\ndf: org.apache.spark.sql.DataFrame \u003d [age: bigint, name: string]\n"
+      },
+      "dateCreated": "Nov 24, 2015 4:14:10 AM",
+      "dateStarted": "Dec 2, 2015 9:38:27 PM",
+      "dateFinished": "Dec 2, 2015 9:38:27 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "df.show ",
+      "dateUpdated": "Dec 2, 2015 9:38:29 PM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "editorMode": "ace/mode/scala",
+        "editorHide": false,
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1448338465455_-477690011",
+      "id": "20151124-041425_2124030576",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TEXT",
+        "msg": "+----+-------+\n| age|   name|\n+----+-------+\n|null|Michael|\n|  30|   Andy|\n|  19| Justin|\n+----+-------+\n\n"
+      },
+      "dateCreated": "Nov 24, 2015 4:14:25 AM",
+      "dateStarted": "Dec 2, 2015 9:38:29 PM",
+      "dateFinished": "Dec 2, 2015 9:38:30 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "import org.apache.spark.sql.functions._",
+      "dateUpdated": "Dec 2, 2015 9:38:32 PM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "editorMode": "ace/mode/scala",
+        "editorHide": false,
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1448338507412_570042540",
+      "id": "20151124-041507_1716992350",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TEXT",
+        "msg": "import org.apache.spark.sql.functions._\n"
+      },
+      "dateCreated": "Nov 24, 2015 4:15:07 AM",
+      "dateStarted": "Dec 2, 2015 9:38:32 PM",
+      "dateFinished": "Dec 2, 2015 9:38:33 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "// Select everybody, but increment the age by 1\ndf.select(df(\"name\"), df(\"age\") + 1).show()\n\n// Select people older than 21\ndf.filter(df(\"age\") \u003e 21).show()\n\n// Count people by age\ndf.groupBy(\"age\").count().show()",
+      "dateUpdated": "Dec 2, 2015 9:38:35 PM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "editorMode": "ace/mode/scala",
+        "editorHide": false,
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1448338524461_-998027055",
+      "id": "20151124-041524_1996616653",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TEXT",
+        "msg": "+-------+---------+\n|   name|(age + 1)|\n+-------+---------+\n|Michael|     null|\n|   Andy|       31|\n| Justin|       20|\n+-------+---------+\n\n+---+----+\n|age|name|\n+---+----+\n| 30|Andy|\n+---+----+\n\n+----+-----+\n| age|count|\n+----+-----+\n|null|    1|\n|  19|    1|\n|  30|    1|\n+----+-----+\n\n"
+      },
+      "dateCreated": "Nov 24, 2015 4:15:24 AM",
+      "dateStarted": "Dec 2, 2015 9:38:35 PM",
+      "dateFinished": "Dec 2, 2015 9:38:38 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "import org.apache.spark.sql._\nval sqlContext \u003d new org.apache.spark.sql.SQLContext(sc)\nval people \u003d sc.textFile(\"tmp/people.txt\")\nval schemaString \u003d \"name age\"\n\n",
+      "dateUpdated": "Dec 2, 2015 9:39:05 PM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "editorMode": "ace/mode/scala",
+        "editorHide": false,
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1448338551487_-1315029500",
+      "id": "20151124-041551_464771867",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TEXT",
+        "msg": "import org.apache.spark.sql._\nsqlContext: org.apache.spark.sql.SQLContext \u003d org.apache.spark.sql.SQLContext@2719dda2\npeople: org.apache.spark.rdd.RDD[String] \u003d MapPartitionsRDD[51] at textFile at \u003cconsole\u003e:32\nschemaString: String \u003d name age\n"
+      },
+      "dateCreated": "Nov 24, 2015 4:15:51 AM",
+      "dateStarted": "Dec 2, 2015 9:39:05 PM",
+      "dateFinished": "Dec 2, 2015 9:39:05 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "people.count()\n\npeople.collect().foreach(println)",
+      "dateUpdated": "Dec 2, 2015 9:39:08 PM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "editorMode": "ace/mode/scala",
+        "editorHide": false,
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1448385940533_-1554768793",
+      "id": "20151124-172540_1572750255",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TEXT",
+        "msg": "res41: Long \u003d 3\nMichael, 29\nAndy, 30\nJustin, 19\n"
+      },
+      "dateCreated": "Nov 24, 2015 5:25:40 PM",
+      "dateStarted": "Dec 2, 2015 9:39:08 PM",
+      "dateFinished": "Dec 2, 2015 9:39:08 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "import org.apache.spark.sql.types.{StructType,StructField,StringType}\n\nval schema \u003d StructType(schemaString.split(\" \").map(fieldName \u003d\u003e StructField(fieldName, StringType, true)))\nval rowRDD \u003d people.map(_.split(\",\")).map(p \u003d\u003e Row(p(0), p(1).trim))\nval peopleDataFrame \u003d sqlContext.createDataFrame(rowRDD, schema)\n\npeopleDataFrame.registerTempTable(\"people\")\n\nval results \u003d sqlContext.sql(\"SELECT name FROM people\")\nresults.map(t \u003d\u003e \"Name: \" + t(0)).collect().foreach(println)",
+      "dateUpdated": "Dec 2, 2015 9:39:11 PM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "editorMode": "ace/mode/scala",
+        "editorHide": false,
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1448338809877_-902980397",
+      "id": "20151124-042009_1674147337",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TEXT",
+        "msg": "import org.apache.spark.sql.types.{StructType, StructField, StringType}\nschema: org.apache.spark.sql.types.StructType \u003d StructType(StructField(name,StringType,true), StructField(age,StringType,true))\nrowRDD: org.apache.spark.rdd.RDD[org.apache.spark.sql.Row] \u003d MapPartitionsRDD[53] at map at \u003cconsole\u003e:35\npeopleDataFrame: org.apache.spark.sql.DataFrame \u003d [name: string, age: string]\nresults: org.apache.spark.sql.DataFrame \u003d [name: string]\nName: Michael\nName: Andy\nName: Justin\n"
+      },
+      "dateCreated": "Nov 24, 2015 4:20:09 AM",
+      "dateStarted": "Dec 2, 2015 9:39:11 PM",
+      "dateFinished": "Dec 2, 2015 9:39:12 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%sh\nhadoop fs -cat tmp/people.json",
+      "dateUpdated": "Dec 2, 2015 9:39:26 PM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "editorMode": "ace/mode/sh",
+        "editorHide": false,
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1448385987750_-700398017",
+      "id": "20151124-172627_2023794195",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TEXT",
+        "msg": "{\"name\":\"Michael\"}\n{\"name\":\"Andy\", \"age\":30}\n{\"name\":\"Justin\", \"age\":19}\n"
+      },
+      "dateCreated": "Nov 24, 2015 5:26:27 PM",
+      "dateStarted": "Dec 2, 2015 9:39:26 PM",
+      "dateFinished": "Dec 2, 2015 9:39:29 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "config": {},
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1449092366935_-385140407",
+      "id": "20151202-213926_1840057073",
+      "dateCreated": "Dec 2, 2015 9:39:26 PM",
+      "status": "READY",
+      "progressUpdateIntervalMs": 500
+    }
+  ],
+  "name": "ZELTOV - People DataFrames Json",
+  "id": "2B4B7EWY7",
+  "angularObjects": {
+    "2B8EK9Z9G": [],
+    "2B6HA4M1D": [],
+    "2B4PDXAJG": [],
+    "2B7QVJYH1": [],
+    "2B5GNF8UB": [],
+    "2B7XXY35M": [],
+    "2B4Y2MH42": [],
+    "2B4WPNTHB": [],
+    "2B7PXUSJK": [],
+    "2B84ZN7VY": [],
+    "2B73WYDUW": [],
+    "2B5EPZWKA": [],
+    "2B82EEZNC": []
+  },
+  "config": {
+    "looknfeel": "default"
+  },
+  "info": {}
+}

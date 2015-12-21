@@ -1,0 +1,336 @@
+{
+  "paragraphs": [
+    {
+      "text": "val hiveContext \u003d new org.apache.spark.sql.hive.HiveContext(sc)",
+      "dateUpdated": "Nov 24, 2015 8:06:08 PM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1448335892831_-2113147028",
+      "id": "20151124-033132_534962725",
+      "result": {
+        "code": "ERROR",
+        "type": "TEXT",
+        "msg": "\u003cconsole\u003e:23: error: type mismatch;\n found   : org.apache.spark.org.apache.spark.org.apache.spark.org.apache.spark.org.apache.spark.SparkContext\n required: org.apache.spark.org.apache.spark.org.apache.spark.org.apache.spark.org.apache.spark.SparkContext\n       val hiveContext \u003d new org.apache.spark.sql.hive.HiveContext(sc)\n                                                                   ^\n"
+      },
+      "dateCreated": "Nov 24, 2015 3:31:32 AM",
+      "dateStarted": "Nov 24, 2015 8:06:09 PM",
+      "dateFinished": "Nov 24, 2015 8:06:09 PM",
+      "status": "ERROR",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "val yahoo_stocks \u003d hiveContext.sql(\"SELECT * FROM nyse limit 5\")",
+      "dateUpdated": "Nov 24, 2015 5:41:24 PM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1448335912055_-506253375",
+      "id": "20151124-033152_250688639",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TEXT",
+        "msg": "yahoo_stocks: org.apache.spark.sql.DataFrame \u003d [exchange: string, stock_symbol: string, date: string, stock_price_open: double, stock_price_high: double, stock_price_low: double, stock_price_close: double, stock_volume: bigint, stock_price_adj_close: double]\n"
+      },
+      "dateCreated": "Nov 24, 2015 3:31:52 AM",
+      "dateStarted": "Nov 24, 2015 5:41:25 PM",
+      "dateFinished": "Nov 24, 2015 5:41:26 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "yahoo_stocks.show",
+      "dateUpdated": "Nov 24, 2015 3:39:47 AM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1448335925610_1477157853",
+      "id": "20151124-033205_980910320",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TEXT",
+        "msg": "+--------+------------+----------+----------------+----------------+---------------+-----------------+------------+---------------------+\n|exchange|stock_symbol|      date|stock_price_open|stock_price_high|stock_price_low|stock_price_close|stock_volume|stock_price_adj_close|\n+--------+------------+----------+----------------+----------------+---------------+-----------------+------------+---------------------+\n|exchange|stock_symbol|      date|            null|            null|           null|             null|        null|                 null|\n|    NYSE|         ASP|2001-12-31|           12.55|            12.8|          12.42|             12.8|       11300|                 6.91|\n|    NYSE|         ASP|2001-12-28|            12.5|           12.55|          12.42|            12.55|        4800|                 6.78|\n|    NYSE|         ASP|2001-12-27|           12.59|           12.59|           12.5|            12.57|        5400|                 6.79|\n|    NYSE|         ASP|2001-12-26|           12.45|            12.6|          12.45|            12.55|        5400|                 6.78|\n+--------+------------+----------+----------------+----------------+---------------+-----------------+------------+---------------------+\n\n"
+      },
+      "dateCreated": "Nov 24, 2015 3:32:05 AM",
+      "dateStarted": "Nov 24, 2015 3:39:47 AM",
+      "dateFinished": "Nov 24, 2015 3:39:48 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%hive select * from nyse limit 5",
+      "dateUpdated": "Nov 24, 2015 3:43:56 AM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [
+            {
+              "name": "nyse.exchange",
+              "index": 0.0,
+              "aggr": "sum"
+            }
+          ],
+          "values": [
+            {
+              "name": "nyse.stock_symbol",
+              "index": 1.0,
+              "aggr": "sum"
+            }
+          ],
+          "groups": [],
+          "scatter": {
+            "xAxis": {
+              "name": "nyse.exchange",
+              "index": 0.0,
+              "aggr": "sum"
+            },
+            "yAxis": {
+              "name": "nyse.stock_symbol",
+              "index": 1.0,
+              "aggr": "sum"
+            }
+          }
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1448336449534_1728146597",
+      "id": "20151124-034049_1087429960",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TABLE",
+        "msg": "nyse.exchange\tnyse.stock_symbol\tnyse.date\tnyse.stock_price_open\tnyse.stock_price_high\tnyse.stock_price_low\tnyse.stock_price_close\tnyse.stock_volume\tnyse.stock_price_adj_close\nexchange\tstock_symbol\tdate\tnull\tnull\tnull\tnull\tnull\tnull\t\nNYSE\tASP\t2001-12-31\t12.55\t12.8\t12.42\t12.8\t11300\t6.91\t\nNYSE\tASP\t2001-12-28\t12.5\t12.55\t12.42\t12.55\t4800\t6.78\t\nNYSE\tASP\t2001-12-27\t12.59\t12.59\t12.5\t12.57\t5400\t6.79\t\nNYSE\tASP\t2001-12-26\t12.45\t12.6\t12.45\t12.55\t5400\t6.78\t\n"
+      },
+      "dateCreated": "Nov 24, 2015 3:40:49 AM",
+      "dateStarted": "Nov 24, 2015 3:43:56 AM",
+      "dateFinished": "Nov 24, 2015 3:43:56 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%hive SHOW CREATE TABLE nyse",
+      "dateUpdated": "Nov 24, 2015 3:47:02 AM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 299.0,
+          "optionOpen": false,
+          "keys": [
+            {
+              "name": "createtab_stmt",
+              "index": 0.0,
+              "aggr": "sum"
+            }
+          ],
+          "values": [],
+          "groups": [],
+          "scatter": {
+            "xAxis": {
+              "name": "createtab_stmt",
+              "index": 0.0,
+              "aggr": "sum"
+            }
+          }
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1448336618464_1642609747",
+      "id": "20151124-034338_148764580",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TABLE",
+        "msg": "createtab_stmt\nCREATE TABLE `nyse`(\t\n  `exchange` string, \t\n  `stock_symbol` string, \t\n  `date` string, \t\n  `stock_price_open` double, \t\n  `stock_price_high` double, \t\n  `stock_price_low` double, \t\n  `stock_price_close` double, \t\n  `stock_volume` bigint, \t\n  `stock_price_adj_close` double)\t\nROW FORMAT DELIMITED \t\n  FIELDS TERMINATED BY \u0027\\t\u0027 \t\nSTORED AS INPUTFORMAT \t\n  \u0027org.apache.hadoop.mapred.TextInputFormat\u0027 \t\nOUTPUTFORMAT \t\n  \u0027org.apache.hadoop.hive.ql.io.HiveIgnoreKeyTextOutputFormat\u0027\t\nLOCATION\t\n  \u0027hdfs://sandbox.hortonworks.com:8020/apps/hive/warehouse/nyse\u0027\t\nTBLPROPERTIES (\t\n  \u0027COLUMN_STATS_ACCURATE\u0027\u003d\u0027true\u0027, \t\n  \u0027numFiles\u0027\u003d\u00271\u0027, \t\n  \u0027numRows\u0027\u003d\u00270\u0027, \t\n  \u0027rawDataSize\u0027\u003d\u00270\u0027, \t\n  \u0027totalSize\u0027\u003d\u002711325505\u0027, \t\n  \u0027transient_lastDdlTime\u0027\u003d\u00271448333274\u0027)\t\n"
+      },
+      "dateCreated": "Nov 24, 2015 3:43:38 AM",
+      "dateStarted": "Nov 24, 2015 3:46:46 AM",
+      "dateFinished": "Nov 24, 2015 3:46:46 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "val yahoo_stocks_orc \u003d hiveContext.sql(\"SELECT * FROM nyse_orc limit 5\")",
+      "dateUpdated": "Nov 24, 2015 5:41:29 PM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1448336801732_-1759311023",
+      "id": "20151124-034641_1675949827",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TEXT",
+        "msg": "yahoo_stocks_orc: org.apache.spark.sql.DataFrame \u003d [exchange: string, stock_symbol: string, date: string, stock_price_open: double, stock_price_high: double, stock_price_low: double, stock_price_close: double, stock_volume: bigint, stock_price_adj_close: double]\n"
+      },
+      "dateCreated": "Nov 24, 2015 3:46:41 AM",
+      "dateStarted": "Nov 24, 2015 5:41:29 PM",
+      "dateFinished": "Nov 24, 2015 5:41:29 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "yahoo_stocks_orc.show",
+      "dateUpdated": "Nov 24, 2015 3:56:11 AM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1448337264700_330505963",
+      "id": "20151124-035424_820193272",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TEXT",
+        "msg": "+--------+------------+----------+----------------+----------------+---------------+-----------------+------------+---------------------+\n|exchange|stock_symbol|      date|stock_price_open|stock_price_high|stock_price_low|stock_price_close|stock_volume|stock_price_adj_close|\n+--------+------------+----------+----------------+----------------+---------------+-----------------+------------+---------------------+\n|exchange|stock_symbol|      date|            null|            null|           null|             null|        null|                 null|\n|    NYSE|         ASP|2001-12-31|           12.55|            12.8|          12.42|             12.8|       11300|                 6.91|\n|    NYSE|         ASP|2001-12-28|            12.5|           12.55|          12.42|            12.55|        4800|                 6.78|\n|    NYSE|         ASP|2001-12-27|           12.59|           12.59|           12.5|            12.57|        5400|                 6.79|\n|    NYSE|         ASP|2001-12-26|           12.45|            12.6|          12.45|            12.55|        5400|                 6.78|\n+--------+------------+----------+----------------+----------------+---------------+-----------------+------------+---------------------+\n\n"
+      },
+      "dateCreated": "Nov 24, 2015 3:54:24 AM",
+      "dateStarted": "Nov 24, 2015 3:56:11 AM",
+      "dateFinished": "Nov 24, 2015 3:56:12 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "yahoo_stocks_orc.count()",
+      "dateUpdated": "Nov 24, 2015 5:41:45 PM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1448337371438_179469856",
+      "id": "20151124-035611_1621791199",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TEXT",
+        "msg": "res67: Long \u003d 5\n"
+      },
+      "dateCreated": "Nov 24, 2015 3:56:11 AM",
+      "dateStarted": "Nov 24, 2015 5:41:45 PM",
+      "dateFinished": "Nov 24, 2015 5:41:47 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "config": {},
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1448386905674_-283383283",
+      "id": "20151124-174145_483379700",
+      "dateCreated": "Nov 24, 2015 5:41:45 PM",
+      "status": "READY",
+      "progressUpdateIntervalMs": 500
+    }
+  ],
+  "name": "ZELTOV - Hive ORC",
+  "id": "2B6KUW16Z",
+  "angularObjects": {
+    "2B3Q5RH75": [],
+    "2B4KR7G6M": [],
+    "2B3HNUWRE": [],
+    "2B4S88X2P": [],
+    "2B42JEQTW": [],
+    "2B5QU2Q5Z": [],
+    "2B6KHHKCV": [],
+    "2B4W24RMK": [],
+    "2B3374TMK": [],
+    "2B4ZUMK38": [],
+    "2B42N38FM": [],
+    "2B4RXUWHA": [],
+    "2B2R6FW9Q": []
+  },
+  "config": {
+    "looknfeel": "default"
+  },
+  "info": {}
+}

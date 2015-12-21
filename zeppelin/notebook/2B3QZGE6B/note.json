@@ -1,0 +1,102 @@
+{
+  "paragraphs": [
+    {
+      "text": "val rdd \u003d sc.textFile(\"people.txt\")\nrdd.take(10).foreach(println)",
+      "dateUpdated": "Nov 3, 2015 9:38:40 PM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1446586690057_153001321",
+      "id": "20151103-213810_1271135565",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TEXT",
+        "msg": "rdd: org.apache.spark.rdd.RDD[String] \u003d MapPartitionsRDD[19] at textFile at \u003cconsole\u003e:23\nDacia:Rosella:Samborski:F:1940-08-06:274357:932-39-7400\nLoria:Suzie:Cassino:F:1964-01-31:166618:940-40-2137\nLashaunda:Markita:Rockhill:F:1936-06-02:185766:923-83-5563\nCandace:Marcy:Goike:F:1971-09-25:92497:935-40-2967\nMarhta:Filomena:Bonin:F:1926-06-29:40013:968-22-1158\nRachel:Gwyn:Mcmonigle:F:1951-04-27:211468:926-47-4803\nLorine:Valencia:Bilous:F:2012-09-08:26612:992-10-1262\nAlene:Berniece:Somji:F:1926-04-25:74027:989-16-1381\nSadye:Mara:Morrisseau:F:1930-07-01:209278:971-50-8157\nShawn:Reginia:Battisti:F:1962-08-26:190167:993-42-5846\n"
+      },
+      "dateCreated": "Nov 3, 2015 9:38:10 PM",
+      "dateStarted": "Nov 3, 2015 9:38:40 PM",
+      "dateFinished": "Nov 3, 2015 9:38:41 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "cleanedRDD.map(_.dateString).take(30)",
+      "dateUpdated": "Nov 4, 2015 1:22:02 PM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1446586720068_545091099",
+      "id": "20151103-213840_1743776012",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TEXT",
+        "msg": "res249: Array[String] \u003d Array(2015-01-01, 2015-01-01, 2015-01-01, 2015-01-02, 2015-01-02, 2015-01-03, 2015-01-03, 2015-01-03, 2015-01-04, 2015-01-04, 2015-01-04, 2015-01-05, 2015-01-05, 2015-01-05, 2015-01-05, 2015-01-06, 2015-01-07, 2015-01-07, 2015-01-08, 2015-01-08, 2015-01-08, 2015-01-08, 2015-01-08, 2015-01-08, 2015-01-09, 2015-01-09, 2015-01-09, 2015-01-09, 2015-01-09, 2015-01-09)\n"
+      },
+      "dateCreated": "Nov 3, 2015 9:38:40 PM",
+      "dateStarted": "Nov 4, 2015 1:22:02 PM",
+      "dateFinished": "Nov 4, 2015 1:22:03 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "config": {},
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1446643322699_14791337",
+      "id": "20151104-132202_1045539708",
+      "dateCreated": "Nov 4, 2015 1:22:02 PM",
+      "status": "READY",
+      "progressUpdateIntervalMs": 500
+    }
+  ],
+  "name": "SparkClass-Day1-Lab2",
+  "id": "2B3QZGE6B",
+  "angularObjects": {
+    "2B3JK1AJF": [],
+    "2B54KU1S9": [],
+    "2B234PXKY": [],
+    "2B1TWFH5X": [],
+    "2B42MN9UV": [],
+    "2B49FRXSJ": [],
+    "2B3WVMGUU": [],
+    "2B3S2M1PG": [],
+    "2B3RC7YNW": [],
+    "2B468TAR1": [],
+    "2B4WPUX2C": [],
+    "2B3UHXV87": [],
+    "2B32H8B5W": [],
+    "2B4SXBHF9": []
+  },
+  "config": {},
+  "info": {}
+}

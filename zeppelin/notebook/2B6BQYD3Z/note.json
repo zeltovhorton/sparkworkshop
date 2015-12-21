@@ -1,0 +1,918 @@
+{
+  "paragraphs": [
+    {
+      "text": "%md\n\n#Building a recommendation Engine in Spark\n\n### Step 1: Preparing the files\n\nYou only need to execute the next note if you want to download the dataset again. \nIf you allready have the data set in the correct space on HDFS, you can safely skip it.\n\n\nBefore executing the next note, please uncomment one of the dataset lines. \n\n**After executing the next note, you should see two files present on HDFS:**\n*/user/zeppelin/movielens/movies.dat*\n*/user/zeppelin/movielens/ratings.dat.gz*",
+      "dateUpdated": "Dec 2, 2015 7:27:14 PM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "editorMode": "ace/mode/sh",
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1448897579876_988925714",
+      "id": "20151130-103259_1415535305",
+      "result": {
+        "code": "SUCCESS",
+        "type": "HTML",
+        "msg": "\u003ch1\u003eBuilding a recommendation Engine in Spark\u003c/h1\u003e\n\u003ch3\u003eStep 1: Preparing the files\u003c/h3\u003e\n\u003cp\u003eYou only need to execute the next note if you want to download the dataset again.\n\u003cbr  /\u003eIf you allready have the data set in the correct space on HDFS, you can safely skip it.\u003c/p\u003e\n\u003cp\u003eBefore executing the next note, please uncomment one of the dataset lines.\u003c/p\u003e\n\u003cp\u003e\u003cstrong\u003eAfter executing the next note, you should see two files present on HDFS:\u003c/strong\u003e\n\u003cbr  /\u003e\u003cem\u003e/user/zeppelin/movielens/movies.dat\u003c/em\u003e\n\u003cbr  /\u003e\u003cem\u003e/user/zeppelin/movielens/ratings.dat.gz\u003c/em\u003e\u003c/p\u003e\n"
+      },
+      "dateCreated": "Nov 30, 2015 10:32:59 AM",
+      "dateStarted": "Dec 2, 2015 7:27:14 PM",
+      "dateFinished": "Dec 2, 2015 7:27:15 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%sh\n#######################################################################################\n#uncomment one of the following lines, depending on the size of the dataset you want. #\n#######################################################################################\n\n\ndataset\u003d\"http://files.grouplens.org/datasets/movielens/ml-1m.zip\"\n\n#dataset\u003d\"http://files.grouplens.org/datasets/movielens/ml-10m.zip\"\n\n#dataset\u003d\"http://files.grouplens.org/datasets/movielens/ml-20m.zip\"\n\n\n#################################################\n# The rest of this note should not be modified. #\n#################################################\n\n#Get the dataset\n\necho \"\"\n\nif [ -d /home/zeppelin/movielens ]; then \n  epoch\u003d`date +%s`\n  echo \"Moving exisiting movielens directory to movielens.org_$epoch\"\n  mv /home/zeppelin/movielens \"/home/zeppelin/movielens.org_$epoch\"\n  echo \"\"\nfi\n\nmkdir movielens\nwget $dataset -o /dev/null -O /home/zeppelin/movielens/ml.zip\nunzip /home/zeppelin/movielens/ml.zip -d /home/zeppelin/movielens \u003e /dev/null\nmv /home/zeppelin/movielens/ml*/movies.dat /home/zeppelin/movielens\nmv /home/zeppelin/movielens/ml*/ratings.dat /home/zeppelin/movielens\ngzip /home/zeppelin/movielens/ratings.dat\n\n# Move the required files to HDFS\n\nif hadoop fs -ls /user/zeppelin/movielens \u0026\u003e /dev/null; then \n  echo \"Moving exisiting movielens directory in HDFS to movielens.org_$epoch\"\n  hadoop fs -mv /user/zeppelin/movielens \"/user/zeppelin/movielens_$epoch\"\n  echo \"\"\nfi\n\nhadoop fs -mkdir /user/zeppelin/movielens\nhadoop fs -put /home/zeppelin/movielens/movies.dat /user/zeppelin/movielens/movies.dat\nhadoop fs -put /home/zeppelin/movielens/ratings.dat.gz /user/zeppelin/movielens/ratings.dat.gz\n\necho \"Files in HDFS:/user/zeppelin/movielens\"\nhadoop fs -ls /user/zeppelin/movielens\necho \"\"",
+      "dateUpdated": "Dec 2, 2015 7:27:25 PM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "editorMode": "ace/mode/sh",
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1448882728100_-1975473884",
+      "id": "20151130-062528_1952170927",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TEXT",
+        "msg": "\n/home/zeppelin/movielens/ml.zip: No such file or directory\nunzip:  cannot find or open /home/zeppelin/movielens/ml.zip, /home/zeppelin/movielens/ml.zip.zip or /home/zeppelin/movielens/ml.zip.ZIP.\nmv: cannot stat `/home/zeppelin/movielens/ml*/movies.dat\u0027: No such file or directory\nmv: cannot stat `/home/zeppelin/movielens/ml*/ratings.dat\u0027: No such file or directory\ngzip: /home/zeppelin/movielens/ratings.dat: No such file or directory\nput: `/home/zeppelin/movielens/movies.dat\u0027: No such file or directory\nput: `/home/zeppelin/movielens/ratings.dat.gz\u0027: No such file or directory\nFiles in HDFS:/user/zeppelin/movielens\n\n"
+      },
+      "dateCreated": "Nov 30, 2015 6:25:28 AM",
+      "dateStarted": "Dec 2, 2015 7:27:25 PM",
+      "dateFinished": "Dec 2, 2015 7:27:37 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\n\n#Step 1: Data Ingest\n\n## Change the *numPartitions* variable to something suitable for your cluster\n\nFor example, numPartitions should be 2*[number of nodes in luster]\nMake sure you have set the number of exucutors in the spark config to at least this number!\n\n**This can take a while...**\n",
+      "dateUpdated": "Dec 2, 2015 7:29:36 PM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "editorMode": "ace/mode/markdown",
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1448897553942_617997126",
+      "id": "20151130-103233_600454161",
+      "result": {
+        "code": "SUCCESS",
+        "type": "HTML",
+        "msg": "\u003ch1\u003eStep 1: Data Ingest\u003c/h1\u003e\n\u003ch2\u003eChange the \u003cem\u003enumPartitions\u003c/em\u003e variable to something suitable for your cluster\u003c/h2\u003e\n\u003cp\u003eFor example, numPartitions should be 2*[number of nodes in luster]\n\u003cbr  /\u003eMake sure you have set the number of exucutors in the spark config to at least this number!\u003c/p\u003e\n\u003cp\u003e\u003cstrong\u003eThis can take a while\u0026hellip;\u003c/strong\u003e\u003c/p\u003e\n"
+      },
+      "dateCreated": "Nov 30, 2015 10:32:33 AM",
+      "dateStarted": "Dec 2, 2015 7:29:36 PM",
+      "dateFinished": "Dec 2, 2015 7:29:36 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%pyspark\n\nimport sys\nimport os\n\nbaseDir         \u003d os.path.join(\u0027movielens\u0027)\nratingsFilename \u003d os.path.join(baseDir, \u0027ratings.dat.gz\u0027)\nmoviesFilename  \u003d os.path.join(baseDir, \u0027movies.dat\u0027)\n\nnumPartitions \u003d 20\nrawRatings \u003d sc.textFile(ratingsFilename).repartition(numPartitions)\nrawMovies  \u003d sc.textFile(moviesFilename)\n",
+      "dateUpdated": "Dec 2, 2015 9:05:41 PM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "editorMode": "ace/mode/scala",
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1448883491165_-1819378034",
+      "id": "20151130-063811_1869033783",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TEXT",
+        "msg": ""
+      },
+      "dateCreated": "Nov 30, 2015 6:38:11 AM",
+      "dateStarted": "Dec 2, 2015 9:05:41 PM",
+      "dateFinished": "Dec 2, 2015 9:05:56 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\n\n#Step 2: Feature Extraction",
+      "dateUpdated": "Dec 2, 2015 12:21:18 PM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "editorMode": "ace/mode/markdown"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1448900576781_-1145991214",
+      "id": "20151130-112256_1642038405",
+      "result": {
+        "code": "SUCCESS",
+        "type": "HTML",
+        "msg": "\u003ch1\u003eStep 2: Feature Extraction\u003c/h1\u003e\n"
+      },
+      "dateCreated": "Nov 30, 2015 11:22:56 AM",
+      "dateStarted": "Dec 2, 2015 12:21:18 PM",
+      "dateFinished": "Dec 2, 2015 12:21:18 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%pyspark\n\ndef get_ratings_tuple(entry):\n    items \u003d entry.split(\u0027::\u0027)\n    return int(items[0]), int(items[1]), float(items[2])\n\ndef get_movie_tuple(entry):\n    items \u003d entry.split(\u0027::\u0027)\n    return int(items[0]), items[1]\n\nratingsRDD \u003d rawRatings.map(get_ratings_tuple).cache()\nmoviesRDD \u003d rawMovies.map(get_movie_tuple).cache()\n\nprint \u0027Ratings: %s\u0027 % ratingsRDD.take(2)\nprint \u0027Movies: %s\u0027 % moviesRDD.take(2)\n",
+      "dateUpdated": "Dec 2, 2015 9:06:45 PM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "editorMode": "ace/mode/scala",
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1448885227027_-337059302",
+      "id": "20151130-070707_624315861",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TEXT",
+        "msg": "Ratings: [(1, 2797, 4.0), (1, 150, 5.0)]\nMovies: [(1, u\u0027Toy Story (1995)\u0027), (2, u\u0027Jumanji (1995)\u0027)]\n"
+      },
+      "dateCreated": "Nov 30, 2015 7:07:07 AM",
+      "dateStarted": "Dec 2, 2015 9:06:45 PM",
+      "dateFinished": "Dec 2, 2015 9:06:48 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\n\n#Step 3: Create Model – The naïve approach",
+      "dateUpdated": "Dec 2, 2015 12:21:18 PM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "editorMode": "ace/mode/markdown"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1448900607629_401499511",
+      "id": "20151130-112327_172012765",
+      "result": {
+        "code": "SUCCESS",
+        "type": "HTML",
+        "msg": "\u003ch1\u003eStep 3: Create Model – The naïve approach\u003c/h1\u003e\n"
+      },
+      "dateCreated": "Nov 30, 2015 11:23:27 AM",
+      "dateStarted": "Dec 2, 2015 12:21:18 PM",
+      "dateFinished": "Dec 2, 2015 12:21:19 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%pyspark\n\nmovieIDsWithRatingsRDD \u003d (ratingsRDD\n                          .map(lambda (user_id,movie_id,rating): (movie_id,[rating]))\n                          .reduceByKey(lambda a,b: a+b))\n\ndef getCountsAndAverages(RatingsTuple):\n    total \u003d 0.0\n    for rating in RatingsTuple[1]:\n        total +\u003d rating\n    return (RatingsTuple[0],(len(RatingsTuple[1]),total/len(RatingsTuple[1])))\n\nmovieIDsWithAvgRatingsRDD \u003d movieIDsWithRatingsRDD.map(getCountsAndAverages)\n\nmovieNameWithAvgRatingsRDD \u003d (moviesRDD\n                .join(movieIDsWithAvgRatingsRDD)\n                .map(lambda (movieid,(name,(ratings, average))): (average, name, ratings)))\n\nprint \u0027movieNameWithAvgRatingsRDD: %s\\n\u0027 % movieNameWithAvgRatingsRDD.take(3)\n",
+      "dateUpdated": "Dec 2, 2015 9:09:39 PM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "editorMode": "ace/mode/scala",
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1448899503181_1146061964",
+      "id": "20151130-110503_295858234",
+      "result": {
+        "code": "ERROR",
+        "type": "TEXT",
+        "msg": "Py4JJavaError: An error occurred while calling z:org.apache.spark.api.python.PythonRDD.runJob.\n: org.apache.spark.SparkException: Job 2 cancelled because Stage 5 was cancelled\n\tat org.apache.spark.scheduler.DAGScheduler.org$apache$spark$scheduler$DAGScheduler$$failJobAndIndependentStages(DAGScheduler.scala:1283)\n\tat org.apache.spark.scheduler.DAGScheduler.handleJobCancellation(DAGScheduler.scala:1229)\n\tat org.apache.spark.scheduler.DAGScheduler$$anonfun$handleStageCancellation$1.apply$mcVI$sp(DAGScheduler.scala:1217)\n\tat org.apache.spark.scheduler.DAGScheduler$$anonfun$handleStageCancellation$1.apply(DAGScheduler.scala:1216)\n\tat org.apache.spark.scheduler.DAGScheduler$$anonfun$handleStageCancellation$1.apply(DAGScheduler.scala:1216)\n\tat scala.collection.IndexedSeqOptimized$class.foreach(IndexedSeqOptimized.scala:33)\n\tat scala.collection.mutable.ArrayOps$ofInt.foreach(ArrayOps.scala:156)\n\tat org.apache.spark.scheduler.DAGScheduler.handleStageCancellation(DAGScheduler.scala:1216)\n\tat org.apache.spark.scheduler.DAGSchedulerEventProcessLoop.doOnReceive(DAGScheduler.scala:1469)\n\tat org.apache.spark.scheduler.DAGSchedulerEventProcessLoop.onReceive(DAGScheduler.scala:1458)\n\tat org.apache.spark.scheduler.DAGSchedulerEventProcessLoop.onReceive(DAGScheduler.scala:1447)\n\tat org.apache.spark.util.EventLoop$$anon$1.run(EventLoop.scala:48)\n\tat org.apache.spark.scheduler.DAGScheduler.runJob(DAGScheduler.scala:567)\n\tat org.apache.spark.SparkContext.runJob(SparkContext.scala:1822)\n\tat org.apache.spark.SparkContext.runJob(SparkContext.scala:1835)\n\tat org.apache.spark.SparkContext.runJob(SparkContext.scala:1848)\n\tat org.apache.spark.api.python.PythonRDD$.runJob(PythonRDD.scala:393)\n\tat org.apache.spark.api.python.PythonRDD.runJob(PythonRDD.scala)\n\tat sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)\n\tat sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)\n\tat sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)\n\tat java.lang.reflect.Method.invoke(Method.java:606)\n\tat py4j.reflection.MethodInvoker.invoke(MethodInvoker.java:231)\n\tat py4j.reflection.ReflectionEngine.invoke(ReflectionEngine.java:379)\n\tat py4j.Gateway.invoke(Gateway.java:259)\n\tat py4j.commands.AbstractCommand.invokeMethod(AbstractCommand.java:133)\n\tat py4j.commands.CallCommand.execute(CallCommand.java:79)\n\tat py4j.GatewayConnection.run(GatewayConnection.java:207)\n\tat java.lang.Thread.run(Thread.java:745)\n\n(\u003cclass \u0027py4j.protocol.Py4JJavaError\u0027\u003e, Py4JJavaError(u\u0027An error occurred while calling z:org.apache.spark.api.python.PythonRDD.runJob.\\n\u0027, JavaObject id\u003do147), \u003ctraceback object at 0x11286c8\u003e)"
+      },
+      "dateCreated": "Nov 30, 2015 11:05:03 AM",
+      "dateStarted": "Dec 2, 2015 9:06:52 PM",
+      "dateFinished": "Dec 2, 2015 9:09:26 PM",
+      "status": "ERROR",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\n\n#Step 3: Create Model – The naïve approach - The result",
+      "dateUpdated": "Dec 2, 2015 12:21:18 PM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "editorMode": "ace/mode/markdown"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1448900402167_1242485630",
+      "id": "20151130-112002_150579868",
+      "result": {
+        "code": "SUCCESS",
+        "type": "HTML",
+        "msg": "\u003ch1\u003eStep 3: Create Model – The naïve approach - The result\u003c/h1\u003e\n"
+      },
+      "dateCreated": "Nov 30, 2015 11:20:02 AM",
+      "dateStarted": "Dec 2, 2015 12:21:19 PM",
+      "dateFinished": "Dec 2, 2015 12:21:19 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%pyspark\n\ndef sortFunction(tuple):\n    key \u003d unicode(\u0027%.3f\u0027 % tuple[0])\n    value \u003d tuple[1]\n    return (key + \u0027 \u0027 + value)\n\nmovieLimitedAndSortedByRatingRDD \u003d (movieNameWithAvgRatingsRDD\n                                    .filter(lambda (average, name, ratings): ratings \u003e 500)\n                                    .sortBy(sortFunction, False))\n\nprint \u0027Movies with highest ratings: %s\u0027 % movieLimitedAndSortedByRatingRDD.take(20)\n",
+      "dateUpdated": "Dec 2, 2015 12:21:18 PM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1448900422573_-1182556039",
+      "id": "20151130-112022_218438522",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TEXT",
+        "msg": "Movies with highest ratings: [(4.560509554140127, u\u0027Seven Samurai (The Magnificent Seven) (Shichinin no samurai) (1954)\u0027, 628), (4.554557700942973, u\u0027Shawshank Redemption, The (1994)\u0027, 2227), (4.524966261808367, u\u0027Godfather, The (1972)\u0027, 2223), (4.52054794520548, u\u0027Close Shave, A (1995)\u0027, 657), (4.517106001121705, u\u0027Usual Suspects, The (1995)\u0027, 1783), (4.510416666666667, u\"Schindler\u0027s List (1993)\", 2304), (4.507936507936508, u\u0027Wrong Trousers, The (1993)\u0027, 882), (4.477724741447892, u\u0027Raiders of the Lost Ark (1981)\u0027, 2514), (4.476190476190476, u\u0027Rear Window (1954)\u0027, 1050), (4.453694416583082, u\u0027Star Wars: Episode IV - A New Hope (1977)\u0027, 2991), (4.4498902706656915, u\u0027Dr. Strangelove or: How I Learned to Stop Worrying and Love the Bomb (1963)\u0027, 1367), (4.425646551724138, u\u0027To Kill a Mockingbird (1962)\u0027, 928), (4.415607985480944, u\u0027Double Indemnity (1944)\u0027, 551), (4.412822049131217, u\u0027Casablanca (1942)\u0027, 1669), (4.406262708418057, u\u0027Sixth Sense, The (1999)\u0027, 2459), (4.401925391095066, u\u0027Lawrence of Arabia (1962)\u0027, 831), (4.395973154362416, u\u0027Maltese Falcon, The (1941)\u0027, 1043), (4.390724637681159, u\"One Flew Over the Cuckoo\u0027s Nest (1975)\", 1725), (4.388888888888889, u\u0027Citizen Kane (1941)\u0027, 1116), (4.386993603411514, u\u0027Bridge on the River Kwai, The (1957)\u0027, 938)]\n"
+      },
+      "dateCreated": "Nov 30, 2015 11:20:22 AM",
+      "dateStarted": "Dec 2, 2015 12:21:28 PM",
+      "dateFinished": "Dec 2, 2015 12:21:38 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\n\n#Step 3: Create Model – Collaborative Filtering - Separate dataset",
+      "dateUpdated": "Dec 2, 2015 12:21:18 PM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "editorMode": "ace/mode/markdown"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1448900675965_23214721",
+      "id": "20151130-112435_1540939387",
+      "result": {
+        "code": "SUCCESS",
+        "type": "HTML",
+        "msg": "\u003ch1\u003eStep 3: Create Model – Collaborative Filtering - Separate dataset\u003c/h1\u003e\n"
+      },
+      "dateCreated": "Nov 30, 2015 11:24:35 AM",
+      "dateStarted": "Dec 2, 2015 12:21:19 PM",
+      "dateFinished": "Dec 2, 2015 12:21:19 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%pyspark\n\ntrainingRDD, validationRDD, testRDD \u003d ratingsRDD.randomSplit([6, 2, 2], seed\u003d0L)\n\nprint \u0027Training: %s, validation: %s, test: %s\\n\u0027 % (trainingRDD.count(),\n                                                    validationRDD.count(),\n                                                    testRDD.count())\n",
+      "dateUpdated": "Dec 2, 2015 12:21:18 PM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1448900683244_27847032",
+      "id": "20151130-112443_12628408",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TEXT",
+        "msg": "Training: 601160, validation: 198985, test: 200064\n\n"
+      },
+      "dateCreated": "Nov 30, 2015 11:24:43 AM",
+      "dateStarted": "Dec 2, 2015 12:21:37 PM",
+      "dateFinished": "Dec 2, 2015 12:21:40 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\n\n#Step 3: Create Model – Collaborative Filtering - computeError function",
+      "dateUpdated": "Dec 2, 2015 12:21:18 PM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "editorMode": "ace/mode/markdown"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1448900709532_-1215045157",
+      "id": "20151130-112509_708012081",
+      "result": {
+        "code": "SUCCESS",
+        "type": "HTML",
+        "msg": "\u003ch1\u003eStep 3: Create Model – Collaborative Filtering - computeError function\u003c/h1\u003e\n"
+      },
+      "dateCreated": "Nov 30, 2015 11:25:09 AM",
+      "dateStarted": "Dec 2, 2015 12:21:19 PM",
+      "dateFinished": "Dec 2, 2015 12:21:19 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%pyspark\n\nimport math\n\ndef computeError(predictedRDD, actualRDD):\n    predictedReformattedRDD \u003d (predictedRDD\n            .map(lambda (UserID, MovieID, Rating):((UserID, MovieID), Rating)) )\n                               \n    actualReformattedRDD \u003d (actualRDD\n            .map(lambda (UserID, MovieID, Rating):((UserID, MovieID), Rating)) )\n    \n    squaredErrorsRDD \u003d (predictedReformattedRDD\n                        .join(actualReformattedRDD)\n                        .map(lambda (k,(a,b)): math.pow((a-b),2)))\n\n    totalError \u003d squaredErrorsRDD.reduce(lambda a,b: a+b)\n    numRatings \u003d squaredErrorsRDD.count()\n\n    return math.sqrt(float(totalError)/numRatings)\n",
+      "dateUpdated": "Dec 2, 2015 12:21:18 PM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1448900718008_15781898",
+      "id": "20151130-112518_266120567",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TEXT",
+        "msg": ""
+      },
+      "dateCreated": "Nov 30, 2015 11:25:18 AM",
+      "dateStarted": "Dec 2, 2015 12:21:38 PM",
+      "dateFinished": "Dec 2, 2015 12:21:40 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\n\n#Step 3: Create Model – Collaborative Filtering - Training the model, finding the best rank",
+      "dateUpdated": "Dec 2, 2015 12:21:18 PM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "editorMode": "ace/mode/markdown"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1448900750085_448285635",
+      "id": "20151130-112550_1043319406",
+      "result": {
+        "code": "SUCCESS",
+        "type": "HTML",
+        "msg": "\u003ch1\u003eStep 3: Create Model – Collaborative Filtering - Training the model, finding the best rank\u003c/h1\u003e\n"
+      },
+      "dateCreated": "Nov 30, 2015 11:25:50 AM",
+      "dateStarted": "Dec 2, 2015 12:21:19 PM",
+      "dateFinished": "Dec 2, 2015 12:21:19 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%pyspark\n\nimport numpy\nfrom pyspark.mllib.recommendation import ALS\n\nvalidationForPredictRDD \u003d validationRDD.map(lambda (UserID, MovieID, Rating): (UserID, MovieID))\n\nranks \u003d [4, 8, 12]\nerrors \u003d [0, 0, 0]\nerr \u003d 0\n\nminError \u003d float(\u0027inf\u0027)\nbestRank \u003d -1\nbestIteration \u003d -1\nfor rank in ranks:\n    model \u003d ALS.train(trainingRDD, rank, seed\u003d5L, iterations\u003d5, lambda_\u003d0.1)\n    predictedRatingsRDD \u003d model.predictAll(validationForPredictRDD)\n    error \u003d computeError(predictedRatingsRDD, validationRDD)\n    errors[err] \u003d error\n    err +\u003d 1\n    print \u0027For rank %s the RMSE is %s\u0027 % (rank, error)\n    if error \u003c minError:\n        minError \u003d error\n        bestRank \u003d rank\n\nprint \u0027The best model was trained with rank %s\u0027 % bestRank",
+      "dateUpdated": "Dec 2, 2015 12:21:19 PM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1448900758877_263052848",
+      "id": "20151130-112558_1117799467",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TEXT",
+        "msg": "For rank 4 the RMSE is 0.88466133943\nFor rank 8 the RMSE is 0.878872309906\nFor rank 12 the RMSE is 0.891127496068\nThe best model was trained with rank 8\n"
+      },
+      "dateCreated": "Nov 30, 2015 11:25:58 AM",
+      "dateStarted": "Dec 2, 2015 12:21:40 PM",
+      "dateFinished": "Dec 2, 2015 12:22:32 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\n\n#Step 3: Create Model – Collaborative Filtering - Testing the model",
+      "dateUpdated": "Dec 2, 2015 12:21:19 PM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "editorMode": "ace/mode/markdown"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1448900776492_-852703638",
+      "id": "20151130-112616_1603690754",
+      "result": {
+        "code": "SUCCESS",
+        "type": "HTML",
+        "msg": "\u003ch1\u003eStep 3: Create Model – Collaborative Filtering - Testing the model\u003c/h1\u003e\n"
+      },
+      "dateCreated": "Nov 30, 2015 11:26:16 AM",
+      "dateStarted": "Dec 2, 2015 12:21:19 PM",
+      "dateFinished": "Dec 2, 2015 12:21:19 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%pyspark\n\nmyModel \u003d ALS.train(trainingRDD, 8, seed\u003d5L, iterations\u003d5, lambda_\u003d0.1)\n\ntestForPredictingRDD \u003d testRDD.map(lambda (UserID, MovieID, Rating): (UserID, MovieID))\n\npredictedTestRDD \u003d myModel.predictAll(testForPredictingRDD)\n\ntestRMSE \u003d computeError(testRDD, predictedTestRDD)\n\nprint \u0027The model had a RMSE on the test set of %s\u0027 % testRMSE",
+      "dateUpdated": "Dec 2, 2015 12:21:19 PM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1448900785521_177669240",
+      "id": "20151130-112625_489463524",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TEXT",
+        "msg": "The model had a RMSE on the test set of 0.882084491205\n"
+      },
+      "dateCreated": "Nov 30, 2015 11:26:25 AM",
+      "dateStarted": "Dec 2, 2015 12:21:40 PM",
+      "dateFinished": "Dec 2, 2015 12:22:49 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\n\n#Step 3: Create Model – Collaborative Filtering - Adding my preferences",
+      "dateUpdated": "Dec 2, 2015 12:21:19 PM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "editorMode": "ace/mode/markdown"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1448900873180_-1632300144",
+      "id": "20151130-112753_1516131897",
+      "result": {
+        "code": "SUCCESS",
+        "type": "HTML",
+        "msg": "\u003ch1\u003eStep 3: Create Model – Collaborative Filtering - Adding my preferences\u003c/h1\u003e\n"
+      },
+      "dateCreated": "Nov 30, 2015 11:27:53 AM",
+      "dateStarted": "Dec 2, 2015 12:21:20 PM",
+      "dateFinished": "Dec 2, 2015 12:21:20 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%pyspark\n\nmyRatedMovies \u003d [                                   # Rating\n    (0, 845,5.0),  # Blade Runner (1982)            - 5.0/5\n    (0, 789,4.5),  # Good Will Hunting (1997)       - 4.5/5\n    (0, 983,4.8),  # Christmas Story, A (1983)      - 4.8/5\n    (0, 551,2.0),  # Taxi Driver (1976)             - 2.0/5\n    (0,1039,2.0),  # Pulp Fiction (1994)            - 2.0/5\n    (0, 651,5.0),  # Dr. Strangelove (1963)         - 5.0/5\n    (0,1195,4.0),  # Raiders of the Lost Ark (1981) - 4.0/5\n    (0,1110,5.0),  # Sixth Sense, The (1999)        - 4.5/5\n    (0,1250,4.5),  # Matrix, The (1999)             - 4.5/5\n    (0,1083,4.0)   # Princess Bride, The (1987)     - 4.0/5\n    ]\nmyRatingsRDD \u003d sc.parallelize(myRatedMovies)",
+      "dateUpdated": "Dec 2, 2015 12:21:19 PM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1448900876268_-1256785218",
+      "id": "20151130-112756_989894953",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TEXT",
+        "msg": ""
+      },
+      "dateCreated": "Nov 30, 2015 11:27:56 AM",
+      "dateStarted": "Dec 2, 2015 12:22:33 PM",
+      "dateFinished": "Dec 2, 2015 12:22:49 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\n\n#Step 3: Create Model – Collaborative Filtering - re-training model including my preferences",
+      "dateUpdated": "Dec 2, 2015 12:21:19 PM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "editorMode": "ace/mode/markdown"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1448900878859_-1404513471",
+      "id": "20151130-112758_442665894",
+      "result": {
+        "code": "SUCCESS",
+        "type": "HTML",
+        "msg": "\u003ch1\u003eStep 3: Create Model – Collaborative Filtering - re-training model including my preferences\u003c/h1\u003e\n"
+      },
+      "dateCreated": "Nov 30, 2015 11:27:58 AM",
+      "dateStarted": "Dec 2, 2015 12:21:20 PM",
+      "dateFinished": "Dec 2, 2015 12:21:20 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%pyspark\n\ntrainingWithMyRatingsRDD \u003d myRatingsRDD.union(trainingRDD)\nmyRatingsModel \u003d ALS.train(trainingWithMyRatingsRDD, 8, seed\u003d5L, iterations\u003d5, lambda_\u003d0.1)\npredictedTestMyRatingsRDD \u003d myRatingsModel.predictAll(testForPredictingRDD)\ntestRMSEMyRatings \u003d computeError(testRDD, predictedTestMyRatingsRDD)\n\nprint \u0027The model had a RMSE on the test set of %s\u0027 % testRMSEMyRatings",
+      "dateUpdated": "Dec 2, 2015 12:21:19 PM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1448900880908_-618471468",
+      "id": "20151130-112800_479625519",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TEXT",
+        "msg": "The model had a RMSE on the test set of 0.896738455559\n"
+      },
+      "dateCreated": "Nov 30, 2015 11:28:00 AM",
+      "dateStarted": "Dec 2, 2015 12:22:49 PM",
+      "dateFinished": "Dec 2, 2015 12:23:06 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\n\n#Step 3: Create Model – Collaborative Filtering - Predicting my recommendations",
+      "dateUpdated": "Dec 2, 2015 12:21:19 PM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "editorMode": "ace/mode/markdown"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1448900882940_483449382",
+      "id": "20151130-112802_741486979",
+      "result": {
+        "code": "SUCCESS",
+        "type": "HTML",
+        "msg": "\u003ch1\u003eStep 3: Create Model – Collaborative Filtering - Predicting my recommendations\u003c/h1\u003e\n"
+      },
+      "dateCreated": "Nov 30, 2015 11:28:02 AM",
+      "dateStarted": "Dec 2, 2015 12:21:20 PM",
+      "dateFinished": "Dec 2, 2015 12:21:20 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%pyspark\n\nmyUnratedMoviesRDD \u003d (moviesRDD\n                      .map(lambda (movieID, name): movieID)\n                      .filter(lambda movieID: movieID not in [ mine[1] for mine in myRatedMovies] )\n                      .map(lambda movieID: (0, movieID)))\n\npredictedRatingsRDD \u003d myRatingsModel.predictAll(myUnratedMoviesRDD)\n",
+      "dateUpdated": "Dec 2, 2015 12:21:19 PM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "editorMode": "ace/mode/markdown"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1448900885965_883203489",
+      "id": "20151130-112805_1916329374",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TEXT",
+        "msg": ""
+      },
+      "dateCreated": "Nov 30, 2015 11:28:05 AM",
+      "dateStarted": "Dec 2, 2015 12:22:49 PM",
+      "dateFinished": "Dec 2, 2015 12:23:06 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\n\n#Step 3: Create Model – Collaborative Filtering - The result",
+      "dateUpdated": "Dec 2, 2015 12:21:19 PM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "editorMode": "ace/mode/markdown"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1448900903532_876140091",
+      "id": "20151130-112823_1050356507",
+      "result": {
+        "code": "SUCCESS",
+        "type": "HTML",
+        "msg": "\u003ch1\u003eStep 3: Create Model – Collaborative Filtering - The result\u003c/h1\u003e\n"
+      },
+      "dateCreated": "Nov 30, 2015 11:28:23 AM",
+      "dateStarted": "Dec 2, 2015 12:21:20 PM",
+      "dateFinished": "Dec 2, 2015 12:21:20 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%pyspark\n\nmovieCountsRDD \u003d (movieIDsWithAvgRatingsRDD\n                  .map(lambda (MovieID, (ratings, average)): (MovieID, ratings)) )\n\npredictedRDD \u003d predictedRatingsRDD.map(lambda (uid, movie_id, rating): (movie_id, rating))\n\npredictedWithCountsRDD \u003d (predictedRDD.join(movieCountsRDD))\n\nratingsWithNamesRDD \u003d (predictedWithCountsRDD\n                       .join(moviesRDD)\n                       .map(lambda (movieID, ((pred, ratings), name)): (pred, name, ratings) )\n                       .filter(lambda (pred, name, ratings): ratings \u003e 75))\n\npredictedHighestRatedMovies \u003d ratingsWithNamesRDD.takeOrdered(20, key\u003dlambda x: -x[0])\n\nprint (\u0027My highest rated movies as predicted (for movies with more than 75 reviews):\\n%s\u0027 %\n        \u0027\\n\u0027.join(map(str, predictedHighestRatedMovies)))",
+      "dateUpdated": "Dec 2, 2015 12:21:19 PM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "editorMode": "ace/mode/markdown"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1448900909020_-2070667059",
+      "id": "20151130-112829_1524202504",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TEXT",
+        "msg": "My highest rated movies as predicted (for movies with more than 75 reviews):\n(4.489491306705942, u\u0027After Life (1998)\u0027, 102)\n(4.364142470236319, u\u0027General, The (1927)\u0027, 206)\n(4.360450023399064, u\u0027Seven Samurai (The Magnificent Seven) (Shichinin no samurai) (1954)\u0027, 628)\n(4.297497751668189, u\u0027Christmas Carol, A (1938)\u0027, 194)\n(4.280989645870789, u\u0027Casablanca (1942)\u0027, 1669)\n(4.237359805358519, u\"It\u0027s a Wonderful Life (1946)\", 729)\n(4.203902108302625, u\u0027Sound of Music, The (1965)\u0027, 882)\n(4.183008985463834, u\u0027Palm Beach Story, The (1942)\u0027, 104)\n(4.179750290135648, u\u0027To Kill a Mockingbird (1962)\u0027, 928)\n(4.154506798629896, u\u0027Star Wars: Episode IV - A New Hope (1977)\u0027, 2991)\n(4.152024647807864, u\u0027Maltese Falcon, The (1941)\u0027, 1043)\n(4.1282968442509524, u\u0027Welcome To Sarajevo (1997)\u0027, 82)\n(4.121407205166381, u\u0027Man for All Seasons, A (1966)\u0027, 219)\n(4.1210241775451015, u\u0027Searchers, The (1956)\u0027, 245)\n(4.112350399137609, u\u002712 Angry Men (1957)\u0027, 616)\n(4.097462244183192, u\u0027Irma la Douce (1963)\u0027, 93)\n(4.090335938849314, u\u0027Yojimbo (1961)\u0027, 215)\n(4.084265404277016, u\u0027Sting, The (1973)\u0027, 1049)\n(4.082824209536973, u\u0027West Side Story (1961)\u0027, 761)\n(4.082001736904751, u\u0027Raiders of the Lost Ark (1981)\u0027, 2514)\n"
+      },
+      "dateCreated": "Nov 30, 2015 11:28:29 AM",
+      "dateStarted": "Dec 2, 2015 12:23:06 PM",
+      "dateFinished": "Dec 2, 2015 12:23:08 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "dateUpdated": "Dec 2, 2015 12:21:19 PM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1448905154726_606314500",
+      "id": "20151130-123914_1659429477",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TEXT"
+      },
+      "dateCreated": "Nov 30, 2015 12:39:14 PM",
+      "dateStarted": "Dec 2, 2015 12:23:08 PM",
+      "dateFinished": "Dec 2, 2015 12:23:08 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    }
+  ],
+  "name": "Recommendation Engine",
+  "id": "2B6BQYD3Z",
+  "angularObjects": {
+    "2B8EK9Z9G": [],
+    "2B6HA4M1D": [],
+    "2B4PDXAJG": [],
+    "2B7QVJYH1": [],
+    "2B5GNF8UB": [],
+    "2B7XXY35M": [],
+    "2B4Y2MH42": [],
+    "2B4WPNTHB": [],
+    "2B7PXUSJK": [],
+    "2B84ZN7VY": [],
+    "2B73WYDUW": [],
+    "2B5EPZWKA": [],
+    "2B82EEZNC": []
+  },
+  "config": {},
+  "info": {}
+}

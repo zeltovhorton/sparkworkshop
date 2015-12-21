@@ -1,0 +1,306 @@
+{
+  "paragraphs": [
+    {
+      "text": "%pyspark\na\u003d(1,2,3,4,5,10)\nprint a",
+      "dateUpdated": "Nov 11, 2015 3:24:49 AM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1440904116213_-249339383",
+      "id": "20150829-230836_682155969",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TEXT",
+        "msg": "(1, 2, 3, 4, 5, 10)\n"
+      },
+      "dateCreated": "Aug 29, 2015 11:08:36 PM",
+      "dateStarted": "Nov 11, 2015 3:24:49 AM",
+      "dateFinished": "Nov 11, 2015 3:25:15 AM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%pyspark\nbase_rdd \u003d sc.textFile(\"/tmp/philadelphia-crime-data-2015-ytd.csv\")\n\nprint base_rdd.take(5)\nprint base_rdd.count()\n\n",
+      "dateUpdated": "Nov 11, 2015 9:25:53 PM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1447212313412_-1589747475",
+      "id": "20151111-032513_1002427483",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TEXT",
+        "msg": "[u\u0027SECTOR,DC_DIST,DC_KEY,LOCATION_BLOCK,UCR_GENERAL,OBJECTID,TEXT_GENERAL_CODE,POINT_X,POINT_Y,SHAPE,DISPATCH_DATE,DISPATCH_TIME\u0027, u\u00271,1,201501000030,1500 BLOCK SHUNK ST,400,129338817,Aggravated Assault No Firearm,-75.17376025,39.91845624,129239946,2015-01-01,02:28:00.0\u0027, u\u00271,1,201501000060,2800 BLOCK CANTRELL ST,400,129332317,Aggravated Assault Firearm,-75.19323947,39.92688103,129233446,2015-01-01,15:55:00.0\u0027, u\u00271,1,201501000081,2800 BLOCK CANTRELL ST,300,129330354,Robbery Firearm,-75.19356481,39.92692647,129231483,2015-01-01,23:46:00.0\u0027, u\u00272,1,201501000155,1800 BLOCK W MOYAMENSING AVE,600,129372455,Theft from Vehicle,-75.17877691,39.9142244,129273584,2015-01-02,10:52:00.0\u0027, u\u00271,1,201501000173,2000 BLOCK POINT BREEZE AVE,600,129345460,Theft from Vehicle,-75.18862964,39.92739659,129246589,2015-01-02,14:26:00.0\u0027, u\u00271,1,201501000282,2000 BLOCK OREGON AV,600,129365351,Thefts,-75.18147584,39.91823982,129266480,2015-01-03,12:43:00.0\u0027, u\u00271,1,201501000284,2000 BLOCK S 22ND ST,600,129352165,Thefts,-75.18249755,39.92695112,129253294,2015-01-03,13:08:00.0\u0027, u\u00271,1,201501000297,S 18TH ST / W PASSYUNK AV,600,129372464,Theft from Vehicle,-75.17629853,39.92425967,129273593,2015-01-03,16:43:00.0\u0027, u\u00272,1,201501000356,2300 BLOCK OREGON AVE,600,129352170,Thefts,-75.18673096,39.91878087,129253299,2015-01-04,08:48:00.0\u0027, u\u00271,1,201501000368,1400 BLOCK SHUNK ST,600,129352171,Thefts,-75.17176403,39.91828871,129253300,2015-01-04,10:10:00.0\u0027, u\u00271,1,201501000402,2900 BLOCK NEW HOPE ST,500,129342652,Burglary Residential,-75.19414401,39.93061131,129243781,2015-01-04,19:35:00.0\u0027, u\u00271,1,201501000444,1800 BLOCK S NEWKIRK ST,600,129370108,Theft from Vehicle,-75.19258598,39.93014428,129271237,2015-01-05,08:37:00.0\u0027, u\u00271,1,201501000446,2100 BLOCK S 20TH ST,600,129372468,Theft from Vehicle,-75.17940991,39.92509852,129273597,2015-01-05,09:05:00.0\u0027, u\u00271,1,201501000451,1800 BLOCK S 19TH ST,500,129342857,Burglary Residential,-75.17704066,39.92803295,129243986,2015-01-05,10:38:00.0\u0027, u\u00272,1,201501000518,23RD STREET DR / OREGON AV,600,129362499,Thefts,-75.18602969,39.91869963,129263628,2015-01-05,22:11:00.0\u0027, u\u00271,1,201501000554,2100 BLOCK TANEY TER,500,129339979,Burglary Residential,-75.1908631,39.92635431,129241108,2015-01-06,09:13:00.0\u0027, u\u00271,1,201501000691,1800 BLOCK HOFFMAN ST,600,129372684,Theft from Vehicle,-75.17572287,39.9271947,129273813,2015-01-07,15:18:00.0\u0027, u\u00272,1,201501000710,2200 BLOCK OREGON AVE,600,129362512,Thefts,-75.18444273,39.9185007,129263641,2015-01-07,17:34:00.0\u0027, u\u00271,1,201501000777,1800 BLOCK HOFFMAN ST,400,129338824,Aggravated Assault No Firearm,-75.17675335,39.92732934,129239953,2015-01-08,12:46:00.0\u0027, u\u00271,1,201501000778,2200 BLOCK SIGEL ST,500,129341207,Burglary Residential,-75.18348714,39.92907428,129242336,2015-01-08,12:04:00.0\u0027, u\u00271,1,201501000795,2000 BLOCK S 22ND ST,600,129351417,Thefts,-75.18251827,39.92685623,129252546,2015-01-08,14:45:00.0\u0027, u\u00272,1,201501000806,1900 BLOCK OREGON AVE,600,129349269,Theft from Vehicle,-75.17937184,39.91775231,129250398,2015-01-08,15:06:00.0\u0027, u\u00271,1,201501000838,2100 BLOCK PORTER ST,600,129369706,Thefts,-75.18271146,39.92098557,129270835,2015-01-08,22:18:00.0\u0027, u\u00271,1,201501000843,1900 BLOCK DURFOR ST,600,129352626,Thefts,-75.17918307,39.92264936,129253755,2015-01-08,22:46:00.0\u0027, u\u00271,1,201501000846,1900 BLOCK POINT BREEZE AVE,300,129328127,Robbery No Firearm,-75.18686059,39.9278402,129229256,2015-01-09,00:02:00.0\u0027, u\u00271,1,201501000861,2500 BLOCK MC KEAN ST 1,600,129366926,Thefts,-75.18762901,39.92798205,129268055,2015-01-09,08:27:00.0\u0027, u\u00271,1,201501000863,2700 BLOCK CANTRELL TER,400,129331798,Aggravated Assault No Firearm,-75.19202998,39.92564603,129232927,2015-01-09,08:56:00.0\u0027, u\u00271,1,201501000881,1900 BLOCK S 18TH ST,700,129375052,Motor Vehicle Theft,-75.17572332,39.92722541,129276181,2015-01-09,13:51:00.0\u0027, u\u00271,1,201501000882,S 21ST ST / PORTER ST,600,129349283,Theft from Vehicle,-75.18222304,39.92087981,129250412,2015-01-09,14:45:00.0\u0027, u\u00271,1,201501000966,2100 BLOCK S WOODSTOCK ST,500,129342873,Burglary Residential,-75.18006065,39.92453453,129244002,2015-01-09,23:38:00.0\u0027, u\u00271,1,201501001117,2400 BLOCK S 24TH ST,600,129358465,Thefts,-75.18710292,39.92137195,129259594,2015-01-11,10:13:00.0\u0027, u\u00271,1,201501001134,2400 BLOCK S RITNER ST,700,129377497,Recovered Stolen Motor Vehicle,-75.18721005,39.92275955,129278626,2015-01-11,13:09:00.0\u0027, u\u00271,1,201501001169,1400 BLOCK WOLF ST,300,129327825,Robbery No Firearm,-75.17034203,39.92185667,129228954,2015-01-11,18:17:00.0\u0027, u\u00271,1,201501001187,2300 BLOCK W PASSYUNK AVE,600,129366434,Thefts,-75.18609583,39.92254104,129267563,2015-01-11,20:33:00.0\u0027, u\u00271,1,201501001193,2000 BLOCK S BOUVIER ST,500,129338438,Burglary Residential,-75.17551711,39.92548951,129239567,2015-01-11,20:51:00.0\u0027, u\u00271,1,201501001209,2700 BLOCK CANTRELL TER,400,129332349,Aggravated Assault Firearm,-75.19196472,39.92557858,129233478,2015-01-12,00:22:00.0\u0027, u\u00271,1,201501001211,2700 BLOCK CANTRELL TER,400,129332350,Aggravated Assault Firearm,-75.19196472,39.92557858,129233479,2015-01-12,01:04:00.0\u0027, u\u00271,1,201501001212,2700 BLOCK CANTRELL TER,400,129332351,Aggravated Assault Firearm,-75.19196472,39.92557858,129233480,2015-01-12,01:05:00.0\u0027, u\u00271,1,201501001216,2000 BLOCK S BROAD ST,600,129366436,Thefts,-75.16969795,39.9248987,129267565,2015-01-12,01:34:00.0\u0027, u\u00272,1,201501001230,2200 BLOCK OREGON AVE,600,129362290,Thefts,-75.18522687,39.91853796,129263419,2015-01-12,16:14:00.0\u0027, u\u00271,1,201501001345,1800 BLOCK S 22ND ST,600,129363889,Thefts,-75.18194068,39.92951241,129265018,2015-01-13,10:44:00.0\u0027, u\u00271,1,201501001367,1800 BLOCK S 28TH ST,400,129331803,Aggravated Assault No Firearm,-75.19205456,39.93000102,129232932,2015-01-13,13:25:00.0\u0027, u\u00271,1,201501001390,2000 BLOCK S 18TH ST,600,129353395,Thefts,-75.17589955,39.92640426,129254524,2015-01-13,15:32:00.0\u0027, u\u00272,1,201501001409,2300 BLOCK OREGON AV,600,129353399,Thefts,-75.18673096,39.91878087,129254528,2015-01-13,18:09:00.0\u0027, u\u00271,1,201501001426,1800 BLOCK S 19TH ST,700,129375276,Motor Vehicle Theft,-75.17703402,39.92857667,129276405,2015-01-13,19:56:00.0\u0027, u\u00271,1,201501001488,1900 BLOCK S 22ND ST,600,129353406,Thefts,-75.18252757,39.9273227,129254535,2015-01-14,11:55:00.0\u0027, u\u00272,1,201501001503,1700 BLOCK BIGLER ST,700,129382234,Recovered Stolen Motor Vehicle,-75.17660644,39.91482039,129283363,2015-01-14,13:23:00.0\u0027, u\u00271,1,201501001534,2100 BLOCK SIGEL ST,700,129375718,Recovered Stolen Motor Vehicle,-75.18059158,39.92868884,129276847,2015-01-14,17:48:00.0\u0027, u\u00271,1,201501001598,2800 BLOCK JACKSON ST,400,129339026,Aggravated Assault No Firearm,-75.19362778,39.92613836,129240155,2015-01-14,23:56:00.0\u0027]\n58175\n"
+      },
+      "dateCreated": "Nov 11, 2015 3:25:13 AM",
+      "dateStarted": "Nov 11, 2015 6:33:46 PM",
+      "dateFinished": "Nov 11, 2015 6:33:48 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "config": {},
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1447277150120_13009109",
+      "id": "20151111-212550_1260519773",
+      "dateCreated": "Nov 11, 2015 9:25:50 PM",
+      "status": "READY",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%pyspark\nimport numpy as np\nzeroArray \u003d np.zeros( (2,4) )\nprint zeroArray\noneArray \u003d np.ones( (2,3) )  \nprint oneArray      \nemptyArray \u003d np.empty( (2,3) ) \nprint emptyArray\n\nfoo \u003d [ [1,2,3],\n        [4,5,6]]\n\nmyArray \u003d np.array(foo)\nprint myArray       \nrangeArray \u003d np.arange(6,12).reshape( (2,3) ) \nprint rangeArray    \nprint np.arange(6,12) \nprint rangeArray.reshape( (3,2) )\nmatA \u003d np.array( [[1,2],[3,4]] )\nmatB \u003d np.array( [[5,6],[7,8]] )\nprint np.dot(matA,matB) ",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1440904133671_1927752139",
+      "id": "20150829-230853_1727663297",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TEXT",
+        "msg": "[[ 0.  0.  0.  0.]\n [ 0.  0.  0.  0.]]\n[[ 1.  1.  1.]\n [ 1.  1.  1.]]\n[[ 0.  0.  0.]\n [ 0.  0.  0.]]\n[[1 2 3]\n [4 5 6]]\n[[ 6  7  8]\n [ 9 10 11]]\n[ 6  7  8  9 10 11]\n[[ 6  7]\n [ 8  9]\n [10 11]]\n[[19 22]\n [43 50]]\n"
+      },
+      "dateCreated": "Aug 29, 2015 11:08:53 PM",
+      "dateStarted": "Aug 29, 2015 11:16:25 PM",
+      "dateFinished": "Aug 29, 2015 11:16:25 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%pyspark\nimport numpy as np\nfrom scipy import linalg\narr \u003d np.array([[1, 2],[3, 4]])\nprint linalg.det(arr)\narr \u003d np.array([[3, 2],[6, 4]])\nprint linalg.det(arr)\nprint linalg.det(np.ones((6, 6)))\narr \u003d np.array([[3, 2], [5, 4]])\nprint linalg.inv(arr)",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1440904200750_346357539",
+      "id": "20150829-231000_1895586158",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TEXT",
+        "msg": "-2.0\n0.0\n0.0\n[[ 2.  -1. ]\n [-2.5  1.5]]\n"
+      },
+      "dateCreated": "Aug 29, 2015 11:10:00 PM",
+      "dateStarted": "Aug 29, 2015 11:17:55 PM",
+      "dateFinished": "Aug 29, 2015 11:17:55 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%pyspark\ntime_step \u003d 0.02\nperiod \u003d 5.\ntime_vec \u003d np.arange(0, 20, time_step)\nsig \u003d np.sin(2 * np.pi / period * time_vec) + 0.5 * np.random.randn(time_vec.size)\nfrom scipy import fftpack\nsample_freq \u003d fftpack.fftfreq(sig.size, d\u003dtime_step)\nsig_fft \u003d fftpack.fft(sig)\npidxs \u003d np.where(sample_freq \u003e 0)\nfreqs \u003d sample_freq[pidxs]\npower \u003d np.abs(sig_fft)[pidxs]\nfreq \u003d freqs[power.argmax()]\nnp.allclose(freq, 1./period)\nsig_fft[np.abs(sample_freq) \u003e freq] \u003d 0\nmain_sig \u003d fftpack.ifft(sig_fft)\n\nfrom scipy import misc",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1440904535782_-286293891",
+      "id": "20150829-231535_1640681026",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TEXT",
+        "msg": ""
+      },
+      "dateCreated": "Aug 29, 2015 11:15:35 PM",
+      "dateStarted": "Aug 29, 2015 11:25:50 PM",
+      "dateFinished": "Aug 29, 2015 11:25:50 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%pyspark\n\n#import matplotlib.pyplot as plt\nimport numpy as np\nfrom sklearn import datasets, linear_model\n\ndiabetes \u003d datasets.load_diabetes()\n\n\n# Use only one feature\ndiabetes_X \u003d diabetes.data[:, np.newaxis]\ndiabetes_X_temp \u003d diabetes_X[:, :, 2]\n\n# Split the data into training/testing sets\ndiabetes_X_train \u003d diabetes_X_temp[:-20]\ndiabetes_X_test \u003d diabetes_X_temp[-20:]\n\n# Split the targets into training/testing sets\ndiabetes_y_train \u003d diabetes.target[:-20]\ndiabetes_y_test \u003d diabetes.target[-20:]\n\n# Create linear regression object\nregr \u003d linear_model.LinearRegression()\n\n# Train the model using the training sets\nregr.fit(diabetes_X_train, diabetes_y_train)\n\n# The coefficients\nprint(\u0027Coefficients: \u0027, regr.coef_)\n\nprint(\"Residual sum of squares: %.2f\"\n      % np.mean((regr.predict(diabetes_X_test) - diabetes_y_test) ** 2))\n# Explained variance score: 1 is perfect prediction\nprint(\u0027Variance score: %.2f\u0027 % regr.score(diabetes_X_test, diabetes_y_test))\n\n",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        }
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1440904711411_-1169633038",
+      "id": "20150829-231831_512671959",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TEXT",
+        "msg": "(\u0027Coefficients: \u0027, array([ 938.23786125]))\nResidual sum of squares: 2548.07\nVariance score: 0.47\n"
+      },
+      "dateCreated": "Aug 29, 2015 11:18:31 PM",
+      "dateStarted": "Aug 29, 2015 11:36:50 PM",
+      "dateFinished": "Aug 29, 2015 11:36:50 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%pyspark\nimport sys\nimport os\n\nbaseDir         \u003d os.path.join(\u0027/tmp/movielens\u0027)\nratingsFilename \u003d os.path.join(baseDir, \u0027ratings.dat\u0027)\nmoviesFilename  \u003d os.path.join(baseDir, \u0027movies.dat\u0027)\n\nnumPartitions \u003d 2\nrawRatings \u003d sc.textFile(ratingsFilename).repartition(numPartitions)\nrawMovies  \u003d sc.textFile(moviesFilename)",
+      "dateUpdated": "Nov 11, 2015 9:31:51 PM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1440905554577_1416077664",
+      "id": "20150829-233234_748665068",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TEXT",
+        "msg": ""
+      },
+      "dateCreated": "Aug 29, 2015 11:32:34 PM",
+      "dateStarted": "Nov 11, 2015 9:31:51 PM",
+      "dateFinished": "Nov 11, 2015 9:31:54 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%pyspark\n\nprint rawMovies.take(2)",
+      "dateUpdated": "Nov 11, 2015 9:31:57 PM",
+      "config": {
+        "colWidth": 12.0,
+        "graph": {
+          "mode": "table",
+          "height": 300.0,
+          "optionOpen": false,
+          "keys": [],
+          "values": [],
+          "groups": [],
+          "scatter": {}
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1447277182537_-979780971",
+      "id": "20151111-212622_34455638",
+      "result": {
+        "code": "SUCCESS",
+        "type": "TEXT",
+        "msg": "[u\"1::Toy Story (1995)::Animation|Children\u0027s|Comedy\", u\"2::Jumanji (1995)::Adventure|Children\u0027s|Fantasy\"]\n"
+      },
+      "dateCreated": "Nov 11, 2015 9:26:22 PM",
+      "dateStarted": "Nov 11, 2015 9:31:57 PM",
+      "dateFinished": "Nov 11, 2015 9:32:04 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "config": {},
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "jobName": "paragraph_1447277366665_-554958533",
+      "id": "20151111-212926_1468726403",
+      "dateCreated": "Nov 11, 2015 9:29:26 PM",
+      "status": "READY",
+      "progressUpdateIntervalMs": 500
+    }
+  ],
+  "name": "Pyspark test",
+  "id": "2AZHT34CH",
+  "angularObjects": {
+    "2B3JK1AJF": [],
+    "2B54KU1S9": [],
+    "2B234PXKY": [],
+    "2B1TWFH5X": [],
+    "2B42MN9UV": [],
+    "2B49FRXSJ": [],
+    "2B3WVMGUU": [],
+    "2B3S2M1PG": [],
+    "2B3RC7YNW": [],
+    "2B468TAR1": [],
+    "2B4WPUX2C": [],
+    "2B3UHXV87": [],
+    "2B32H8B5W": [],
+    "2B4SXBHF9": []
+  },
+  "config": {
+    "looknfeel": "default"
+  },
+  "info": {}
+}
