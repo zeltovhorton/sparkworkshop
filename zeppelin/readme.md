@@ -1,4 +1,14 @@
 
+##Restore zeppelin notebooks
+
+    git clone https://github.com/zeltovhorton/sparkworkshop
+    
+    ./bin/zeppelin-daemon.sh stop
+    mv incubator-zeppelin/notebook incubator-zeppelin/notebook_bkup
+    cp -R sparkworkshop/zeppelin/notebook/ incubator-zeppelin/
+    cd incubator-zeppelin/
+    ./bin/zeppelin-daemon.sh start
+
 ##**Importing the zeppelin notebook:**
 
 Apache Zeppelin, as of now, unfortunately, it does not support export of notebooks. Chances are you would need this feature to maybe share your notebooks with your colleagues, migrate from one machine to another or even to put your work under source version control.
