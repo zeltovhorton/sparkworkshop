@@ -25,5 +25,54 @@ CLI:
     sqlContext.sql("""create temporary function geohash_encode as 'com.github.gbraccialli.hive.udf.UDFGeohashEncode'""");
     sqlContext.sql("""select geohash_encode(1.11,1.11,3) from sample_07 limit 10""").collect().foreach(println);
 
+
+
+Custom HiveUDF function:
+
+1- Open spark-shell with hive udf jar as parameter:
+
+    spark-shell --jars path-to-your-hive-udf.jar
+
+2- From spark-shell, open declare hive context and create functions
+
+    val sqlContext = new org.apache.spark.sql.hive.HiveContext(sc);
+     
+    sqlContext.sql("""CREATE TEMPORARY FUNCTION getRegionUS AS 'com.hortonworks.hive.SimpleUDFgetRegionUS'""");
+     sqlContext.sql("""SELECT "California" as State, getRegionUS("California") as Region""").collect().foreach(println);
+
+
+*This will only work if you also register the json serde as custom udf:*
+
+     sqlContext.sql("""SELECT getRegionUS(split(user.userlocation, ",")[0]) FROM TWEETS""").collect().foreach(println);
+
+
+IN HIVE:
+
+#### HDP 2.3 ONLY, user is a reserved word, must use set command below with 
+
+upload JAR file into /tmp/udfs on hdfs
+
+    SET hive.support.sql11.reserved.keywords=false;
+    
+    SELECT "California" as State;
+    
+    CREATE TEMPORARY FUNCTION getRegionUS AS 'com.hortonworks.hive.SimpleUDFgetRegionUS'
+    USING JAR 'hdfs:///tmp/udfs/HiveSimpleUdf-1.0-SNAPSHOT.jar';
+    
+    LIST JARS;
+    
+    SELECT "California" as State, getRegionUS("California") as Region;
+    
+    DROP FUNCTION getRegionsUS;
+    
+    CREATE FUNCTION getRegionUS AS 'com.hortonworks.hive.SimpleUDFgetRegionUS' 
+    USING JAR 'hdfs:///tmp/udfs/HiveSimpleUdf-1.0-SNAPSHOT.jar';
+    
+    LIST JARS;
+    
+    SELECT DISTINCT getRegionUS(split(user.userlocation, ",")[0]) FROM TWEETS;
+
 > Written with [StackEdit](https://stackedit.io/).
+
+
 
